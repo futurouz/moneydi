@@ -4,6 +4,8 @@ import First from './First';
 import Second from './Second';
 import Third from './Third';
 import Fourth from './Fourth';
+import Fifth from './Fifth';
+import Footer from './Footer';
 
 const Home = () => {
     return (
@@ -12,7 +14,9 @@ const Home = () => {
             <First/>
             <Second/>
             <Third/>
-            < Fourth/>
+            <Fourth/>
+            <Fifth/>
+            <Footer/>
         </div>
     )
 };
