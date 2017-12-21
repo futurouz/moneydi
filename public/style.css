@@ -25,3 +25,14 @@
     background-color: #F5A623;
     color: white;
 }
+
+.secondContainer {
+    width: 100%;
+    padding: 40px;
+}
+
+.secondContainer img {
+    height: 150px;
+    width: auto;
+    margin-bottom: 20px;
+}
