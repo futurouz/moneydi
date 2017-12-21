@@ -1,4 +1,5 @@
 import React from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
 const Fourth = () => {
     return (
@@ -27,7 +28,9 @@ const Fourth = () => {
                 </ol>
             </div>
             <div className="row">
-                <a href="#">ใบสมัคร</a>
+                <Link to="/MoneyDiApp">
+                    <a href="#">ใบสมัคร</a>
+                </Link>
             </div>
         </div>
     );
