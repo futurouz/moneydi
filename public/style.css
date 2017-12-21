@@ -1,0 +1,27 @@
+.navBar {
+    border: 1px solid black;
+    padding: 25px;
+}
+
+.firstContainer {
+    height: 700px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("img/bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.firstContainer a {
+    padding: 10px;
+    border-radius: 10%;
+    background-color: #F5A623;
+    color: white;
+}
