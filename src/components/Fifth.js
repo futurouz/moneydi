@@ -5,12 +5,12 @@ const Fifth = () => {
         <div>
             <div className="fifthContainer">
                 <div className="row">
-                    <div class="col-md-12 text-center">
+                    <div className="col-md-12 text-center">
                         <h1>"เราต้องการลดปัญหาเงินกู้นอกระบบ"</h1>
                     </div>
                 </div>
                 <div className="row">
-                    <div class="col-md-8 text-center">
+                    <div className="col-md-8 text-center">
                         <p>
                             มันนี่ดิเป็นสตาร์ทอัพที่อยากแก้ปัญหาความต้องการเงินเร่งด่วนชั่วคราวของมนุษย์เงินเดือน
                             เราเชื่อว่า ทุกวันที่เราไปทำงาน เราได้เงินเดือน และถ้าจำเป็นต้องใช้
@@ -22,7 +22,7 @@ const Fifth = () => {
                             หรือถ้าไม่มี จะไม่ให้ก็ได้
                         </p>
                     </div>
-                    <div class="col-md-4 text-center">
+                    <div className="col-md-4 text-center">
                         <p>Contact Us โทร: 097-117-7937 Line: MoneyDi</p>
                     </div>
                 </div>

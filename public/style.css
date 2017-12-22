@@ -19,7 +19,7 @@
     background-size: cover;
 }
 
-.firstContainer a {
+.firstContainer span {
     padding: 10px;
     border-radius: 10%;
     background-color: #F5A623;
@@ -59,7 +59,7 @@
     padding: 40px;
 }
 
-.fourthContainer a {
+.fourthContainer span {
     padding: 10px;
     border-radius: 10%;
     background-color: #F5A623;

@@ -1,9 +1,9 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 const Fourth = () => {
     return (
-        <div class="fourthContainer">
+        <div className="fourthContainer">
             <div className="row">
                 <h1>คุณสมบัติผู้สมัคร</h1>
             </div>
@@ -29,7 +29,7 @@ const Fourth = () => {
             </div>
             <div className="row">
                 <Link to="/MoneyDiApp">
-                    <a href="#">ใบสมัคร</a>
+                    <span>ใบสมัคร</span>
                 </Link>
             </div>
         </div>
