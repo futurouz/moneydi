@@ -1,12 +1,11 @@
 import React from 'react';
 import Navbar from './common/Navbar';
-import GeneralFrom from './GeneralForm';
 
-const Form = () => {
+const Form = (props) => {
     return (
         <div>
             <Navbar/>
-            <GeneralFrom/>
+            {props.children}
         </div>
     )
 };

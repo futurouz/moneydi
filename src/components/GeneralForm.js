@@ -1,11 +1,19 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form'
+import Form from './Form'
 
 class GeneralForm extends Component {
 
+    submit(values) {
+        console.log(values)
+    }
+
     render() {
+
+        const {handleSubmit} = this.props;
+
         return (
-            <div>
+            <Form>
                 <div className="row">
                     <div className="col-md-12 text-center">
                         <h1>สมัครยืมเงินมันนี่ดิ</h1>
@@ -13,7 +21,7 @@ class GeneralForm extends Component {
                 </div>
                 <div className="row">
                     <div className="col-md-6 offset-md-4 ">
-                        <form>
+                        <form onSubmit={handleSubmit(this.submit)}>
                             <div>
                                 <label htmlFor="name">ชื่อ-นามสกุล</label>
                                 <Field name="name" component="input" type="text"/>
@@ -386,7 +394,7 @@ class GeneralForm extends Component {
                                     </label>
                                 </div>
                             </div>
-                            {/* Final Section   */}
+                            {/* Section 5 */}
                             <h2>ค่าใช้จ่าย</h2>
                             <div>
                                 <label htmlFor="installment">ผ่อนรถ บาทต่อเดือน</label>
@@ -494,12 +502,34 @@ class GeneralForm extends Component {
                                     </label>
                                 </div>
                             </div>
+                            {/* Section 6 */}
+                            <h2>เงินยืม</h2>
+                            <div>
+                                <label htmlFor="obective">จุดประสงค์ในการขอยืม</label>
+                                <Field name="obective" component="input" type="text"/>
+                            </div>
+                            <div>
+                                <label htmlFor="limit">วงเงินที่ต้องการ (บาท)</label>
+                                <Field name="limit" component="input" type="number"/>
+                            </div>
+                            <div>
+                                <label htmlFor="MinimumLimit">วงเงินขั้นต่ำที่ต้องการ (บาท)</label>
+                                <Field name="MinimumLimit" component="input" type="number"/>
+                            </div>
+                            <div>
+                                <label htmlFor="promptPay">ต้องการโอนเงินเข้าบัญชีพร้อมเพย์ โปรดระบุตัวเลขบัตรประชาชนหรือเบอร์มือถือ</label>
+                                <Field name="promptPay" component="input" type="number"/>
+                            </div>
+                            <div>
+                                <label htmlFor="bank">ต้องการโอนเงินเข้าบัญชีธนาคาร โปรดระบุชื่อธนาคาร ชื่อบัญชีและเลขที่บัญชี</label>
+                                <Field name="bank" component="input" type="number"/>
+                            </div>
 
-                            <button type="submit">Next</button>
+                            <button type="submit">Submit</button>
                         </form>
                     </div>
                 </div>
-            </div>
+            </Form>
         )
     }
 };
