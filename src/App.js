@@ -5,6 +5,7 @@ import {Provider} from 'react-redux'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Home from './components/Home';
 import GeneralForm from './components/GeneralForm';
+import Thanks from './components/Thanks'
 
 const rootReducer = combineReducers({form: formReducer})
 
@@ -18,6 +19,7 @@ export default class App extends Component {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/MoneyDiApp" component={GeneralForm}/>
+            <Route path="/thankyou" component={Thanks}/>
           </Switch>
         </Router>
       </Provider>

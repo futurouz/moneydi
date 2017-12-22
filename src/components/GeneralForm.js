@@ -4,8 +4,9 @@ import Form from './Form'
 
 class GeneralForm extends Component {
 
-    submit(values) {
+    submit(values,dispatch,props) {
         console.log(values)
+        props.history.push('/thankyou');
     }
 
     render() {
