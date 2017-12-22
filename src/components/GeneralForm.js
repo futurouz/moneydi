@@ -1,16 +1,33 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form'
+import firebase from 'firebase';
 import Form from './Form'
 
 class GeneralForm extends Component {
+    
+    componentWillMount() {
+        firebase.initializeApp({
+            apiKey: "AIzaSyCK4qBLbIUGCXf937tMgnzWy5kr_Bgqmwg",
+            authDomain: "moneydi-f61bd.firebaseapp.com",
+            databaseURL: "https://moneydi-f61bd.firebaseio.com",
+            projectId: "moneydi-f61bd",
+            storageBucket: "",
+            messagingSenderId: "710399914064"
+        })
+    };
 
-    submit(values,dispatch,props) {
-        console.log(values)
+    submit(values, dispatch, props) {
+        
+        var date = new Date().toUTCString().replace(", ", " ")
+        console.log(date)
+        const dbRefObject = firebase.database().ref().child('users').child(date);
+        dbRefObject.push().set(values);
+        
         props.history.push('/thankyou');
     }
 
     render() {
-
+        
         const {handleSubmit} = this.props;
 
         return (
