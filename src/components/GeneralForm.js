@@ -49,18 +49,93 @@ class GeneralForm extends Component {
                 <div className="row">
                     <div className="col-md-6 offset-md-4 ">
                         <form onSubmit={handleSubmit(this.submit)}>
+                            <h1>Profile</h1>
                             <div>
-                                <label htmlFor="name">ชื่อ-นามสกุล</label>
-                                <Field name="name" component="input" type="text"/>
+                                <label htmlFor="firstName">ชื่อ</label>
+                                <Field name="firstName" component="input" type="text"/>
                             </div>
                             <div>
-                                <label htmlFor="citizenId">เลขที่บัตรประชาชน</label>
-                                <Field name="citizenId" component="input" type="number"/>
+                                <label htmlFor="lastName">นามสกุล</label>
+                                <Field name="lastName" component="input" type="text"/>
                             </div>
                             <div>
                                 <label htmlFor="mobileNo">โทรศัพท์มือถือ</label>
                                 <Field name="mobileNo" component="input" type="number"/>
                             </div>
+                            <div>
+                                <label htmlFor="password">รหัสผ่าน</label>
+                                <Field name="password" component="input" type="password"/>
+                            </div>
+        
+
+                            {/* ---------------PAGE 2 ------------- */}
+                            <div>
+                                <label htmlFor="citizenId">เลขที่บัตรประชาชน</label>
+                                <Field name="citizenId" component="input" type="number"/>
+                            </div>
+                            <div>
+                                <label htmlFor="age">อายุ</label>
+                                <Field name="age" component="input" type="number"/>
+                            </div>
+                            <div>
+                                <label htmlFor="address">ที่อยู่ปัจจุบัน</label>
+                                <Field name="address" component="input" type="text"/>
+                            </div>
+                            <div>
+                                <label htmlFor="province">จังหวัด</label>
+                                <Field name="province" component="input" type="text"/>
+                            </div>
+                            <div>
+                                <label>ที่อยู่ปัจจุบันอยู่มานานเท่าไร</label>
+                                <div>
+                                    <label>
+                                        <Field name="addressAge" component="input" type="radio" value="1 เดือน"/>{' '}
+                                        1  เดือน
+                                    </label>
+                                    <label>
+                                        <Field name="addressAge" component="input" type="radio" value="2-5 เดือน"/>{' '}
+                                        2 - 5 เดือน
+                                    </label>
+                                    <label>
+                                        <Field name="addressAge" component="input" type="radio" value="6-12 เดือน"/>{' '}
+                                        6 - 12 เดือน
+                                    </label>
+                                    <label>
+                                        <Field name="addressAge" component="input" type="radio" value="1-2 ปี"/>{' '}
+                                        1-2 ปี
+                                    </label>
+                                     <label>
+                                        <Field name="addressAge" component="input" type="radio" value="มากกว่า 2 ปี"/>{' '}
+                                        มากกว่า 2 ปี
+                                    </label>
+                                </div>
+                            </div>
+                                 <div>
+                                <label>เบอร์มือถือใช้มานานเท่าไร</label>
+                                <div>
+                                    <label>
+                                        <Field name="mobileAge" component="input" type="radio" value="1 เดือน"/>{' '}
+                                        1  เดือน
+                                    </label>
+                                    <label>
+                                        <Field name="mobileAge" component="input" type="radio" value="2-5 เดือน"/>{' '}
+                                        2 - 5 เดือน
+                                    </label>
+                                    <label>
+                                        <Field name="mobileAge" component="input" type="radio" value="6-12 เดือน"/>{' '}
+                                        6 - 12 เดือน
+                                    </label>
+                                    <label>
+                                        <Field name="mobileAge" component="input" type="radio" value="1-2 ปี"/>{' '}
+                                        1-2 ปี
+                                    </label>
+                                     <label>
+                                        <Field name="mobileAge" component="input" type="radio" value="มากกว่า 2 ปี"/>{' '}
+                                        มากกว่า 2 ปี
+                                    </label>
+                                </div>
+                            </div>
+                
                             <div>
                                 <label htmlFor="lineId">LINE ID</label>
                                 <Field name="lineId" component="input" type="text"/>
@@ -69,11 +144,7 @@ class GeneralForm extends Component {
                                 <label htmlFor="email">Email</label>
                                 <Field name="email" component="input" type="email"/>
                             </div>
-                            <div>
-                                <label htmlFor="email">Email</label>
-                                <Field name="email" component="input" type="email"/>
-                            </div>
-                            <div>
+                                 <div>
                                 <label>ประเภทที่อยู่อาศัย</label>
                                 <div>
                                     <label>
@@ -94,6 +165,7 @@ class GeneralForm extends Component {
                                     </label>
                                 </div>
                             </div>
+
                             <div>
                                 <label>สถานะการพักอำศัย</label>
                                 <div>
@@ -123,6 +195,7 @@ class GeneralForm extends Component {
                                     </label>
                                 </div>
                             </div>
+
                             <div>
                                 <label>การศึกษา</label>
                                 <div>
@@ -173,36 +246,46 @@ class GeneralForm extends Component {
                                     </label>
                                 </div>
                             </div>
-                            {/* Section 2  */}
                             <h2>ข้อมูลคู่สมรส</h2>
                             <div>
-                                <label htmlFor="coupleName">คู่สมรส: ชื่อ นามสกุล</label>
-                                <Field name="coupleName" component="input" type="text"/>
+                                <label htmlFor="coupleFirstName">ชื่อ</label>
+                                <Field name="coupleFirstName" component="input" type="text"/>
+                            </div>
+                             <div>
+                                <label htmlFor="coupleLastName">นามสกุล</label>
+                                <Field name="coupleLastName" component="input" type="text"/>
                             </div>
                             <div>
-                                <label htmlFor="couplePlace">คู่สมรส: สถานที่ทำงาน</label>
+                                <label htmlFor="couplePlace">ชื่อสถานที่ทำงาน</label>
                                 <Field name="couplePlace" component="input" type="text"/>
                             </div>
                             <div>
-                                <label htmlFor="coupleWork">คู่สมรส: อาชีพ</label>
+                                <label htmlFor="coupleWork">อาชีพ</label>
                                 <Field name="coupleWork" component="input" type="text"/>
                             </div>
                             <div>
-                                <label htmlFor="couplePosition">คู่สมรส: ตำแหน่ง</label>
+                                <label htmlFor="couplePosition">ตำแหน่ง</label>
                                 <Field name="couplePosition" component="input" type="text"/>
                             </div>
                             <div>
-                                <label htmlFor="coupleMobile">คู่สมรส: โทรศัพท์มือถือ</label>
+                                <label htmlFor="coupleMobile">โทรศัพท์มือถือ</label>
                                 <Field name="coupleMobile" component="input" type="number"/>
                             </div>
-                            {/* Section 3  */}
-                            <h2>บุคคลที่อนุญาตให้ติดต่อได้</h2>
+                             <div>
+                                <label htmlFor="coupleSalary">รายได้ (ต่อเดือน)</label>
+                                <Field name="coupleSalary" component="input" type="number"/>
+                            </div>
+                            <h2>บุคคลที่อนุญาตให้ติดต่อได้ (ไม่ใช่คู่สมรส)</h2>
                             <div>
-                                <label htmlFor="contactName">ชื่อ บุคคลที่อนุญาตให้ติดต่อได้</label>
-                                <Field name="contactName" component="input" type="text"/>
+                                <label htmlFor="contactFirstName">ชื่อ</label>
+                                <Field name="contactFirstName" component="input" type="text"/>
                             </div>
                             <div>
-                                <label htmlFor="contactMobile">โทรศัพท์มือถือ บุคคลที่อนุญาตให้ติดต่อได้</label>
+                                <label htmlFor="contactLastName">นามสกุล</label>
+                                <Field name="contactLastName" component="input" type="text"/>
+                            </div>
+                            <div>
+                                <label htmlFor="contactMobile">โทรศัพท์มือถือ</label>
                                 <Field name="contactMobile" component="input" type="number"/>
                             </div>
                             <div>
@@ -226,7 +309,6 @@ class GeneralForm extends Component {
                                     </label>
                                 </div>
                             </div>
-                            {/* Section 4  */}
                             <h2>ข้อมูลอาชีพและรายได้</h2>
                             <div>
                                 <label>อาชีพ</label>
@@ -320,6 +402,10 @@ class GeneralForm extends Component {
                                         <Field name="workStatus" component="input" type="radio" value="พนักงานรายวัน"/>{' '}
                                         พนักงานรายวัน
                                     </label>
+                                       <label>
+                                        <Field name="workStatus" component="input" type="radio" value="ว่างงาน"/>{' '}
+                                        ว่างงาน
+                                    </label>
                                 </div>
                             </div>
                             <div>
@@ -331,9 +417,39 @@ class GeneralForm extends Component {
                                 <Field name="placeAddress" component="input" type="text"/>
                             </div>
                             <div>
-                                <label htmlFor="placeMobile">โทรศัพท์ สถานที่ทำงาน</label>
+                                <label htmlFor="placeMobile">โทรศัพท์</label>
                                 <Field name="placeMobile" component="input" type="number"/>
                             </div>
+                             <div>
+                                <label>จำนวนพนักงานในที่ทำงาน</label>
+                                <div>
+                                    <label>
+                                        <Field name="amoutOfEmplo" component="input" type="radio" value="1 คน"/>{' '}
+                                        1 คน
+                                    </label>
+                                    <label>
+                                        <Field name="amoutOfEmplo" component="input" type="radio" value="2-10 คน"/>{' '}
+                                        2-10 คน
+                                    </label>
+                                    <label>
+                                        <Field name="amoutOfEmplo" component="input" type="radio" value="11-50 คน"/>{' '}
+                                        11-50 คน
+                                    </label>
+                                    <label>
+                                        <Field name="amoutOfEmplo" component="input" type="radio" value="51-100 คน"/> {' '}
+                                        51-100 คน
+                                    </label>
+                                    <label>
+                                        <Field name="amoutOfEmplo" component="input" type="radio" value="101-1000 คน"/> {' '}
+                                        101-1000 คน
+                                    </label>
+                                    <label>
+                                        <Field name="amoutOfEmplo" component="input" type="radio" value="มากกว่า 1000"/> {' '}
+                                        มากกว่า 1000
+                                    </label>
+                                </div>
+                            </div>
+
                             <div>
                                 <label>อายุงาน</label>
                                 <div>
@@ -401,27 +517,14 @@ class GeneralForm extends Component {
                                 </div>
                             </div>
                             <div>
-                                <label>รับเงินเดือนเดือนละ</label>
-                                <div>
-                                    <label>
-                                        <Field name="countToGetSalary" component="input" type="radio" value="1 ครั้ง"/>{' '}
-                                        1 ครั้ง
-                                    </label>
-                                    <label>
-                                        <Field name="countToGetSalary" component="input" type="radio" value="2 ครั้ง"/>{' '}
-                                        2 ครั้ง
-                                    </label>
-                                    <label>
-                                        <Field
-                                            name="countToGetSalary"
-                                            component="input"
-                                            type="radio"
-                                            value="มากกว่า 2 ครั้ง"/>{' '}
-                                        มากกว่า 2 ครั้ง
-                                    </label>
-                                </div>
+                                <label htmlFor="countToGetSalary">รับเงินเดือนเดือนละ (ครั้ง)</label>
+                                <Field name="countToGetSalary" component="input" type="number"/>
                             </div>
-                            {/* Section 5 */}
+                             <div>
+                                <label htmlFor="countToGetSalary">รับเงินวันที่</label>
+                                <Field name="countToGetSalary" component="input" type="date"/>
+                            </div>
+                      
                             <h2>ค่าใช้จ่าย</h2>
                             <div>
                                 <label htmlFor="installment">ผ่อนรถ บาทต่อเดือน</label>
@@ -464,7 +567,7 @@ class GeneralForm extends Component {
                                 <div>
                                     <label>
                                         <Field
-                                            name="getSalary"
+                                            name="cashCard"
                                             component="input"
                                             type="radio"
                                             value="สมัครแล้วไม่ผ่าน"/>{' '}
@@ -472,18 +575,18 @@ class GeneralForm extends Component {
                                     </label>
                                     <label>
                                         <Field
-                                            name="getSalary"
+                                            name="cashCard"
                                             component="input"
                                             type="radio"
                                             value="มี แต่วงเงินเต็ม"/>{' '}
                                         มี แต่วงเงินเต็ม
                                     </label>
                                     <label>
-                                        <Field name="getSalary" component="input" type="radio" value="มี วงเงินเหลือ"/>{' '}
+                                        <Field name="cashCard" component="input" type="radio" value="มี วงเงินเหลือ"/>{' '}
                                         มี วงเงินเหลือ
                                     </label>
                                     <label>
-                                        <Field name="getSalary" component="input" type="radio" value="ไม่สมัคร"/>{' '}
+                                        <Field name="cashCard" component="input" type="radio" value="ไม่สมัคร"/>{' '}
                                         ไม่สมัคร
                                     </label>
                                 </div>
@@ -497,6 +600,27 @@ class GeneralForm extends Component {
                                 <Field name="loadCash" component="input" type="number"/>
                             </div>
                             <div>
+                                <label>ยื่นขอสินเชื่อ 2 เดือนย้อนหลัง ทั้งสิ้นกี่แห่ง</label>
+                                <div>
+                                    <label>
+                                        <Field name="timeForInstallment" component="input" type="radio" value="0"/>{' '}
+                                        0 ครั้ง
+                                    </label>
+                                    <label>
+                                        <Field name="timeForInstallment" component="input" type="radio" value="1-2"/>{' '}
+                                        1-2
+                                    </label>
+                                    <label>
+                                        <Field name="timeForInstallment" component="input" type="radio" value="3-5"/>{' '}
+                                        3-5
+                                    </label>
+                                    <label>
+                                        <Field name="timeForInstallment" component="input" type="radio" value="มากกว่า 5 ครั้ง"/>{' '}
+                                        มากกว่า 5 ครั้ง
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
                                 <label htmlFor="inFamily">ค่าเลี้ยงดูลูก/พ่อแม่/พี่น้อง/ญาติ รวมประมาณเท่าไรต่อเดือน</label>
                                 <Field name="inFamily" component="input" type="number"/>
                             </div>
@@ -504,35 +628,11 @@ class GeneralForm extends Component {
                                 <label htmlFor="merit">ทำบุญประมาณเดือนละเท่าไร</label>
                                 <Field name="merit" component="input" type="number"/>
                             </div>
+
+                            {/* ---------PAGE 3-------------*/}
+                            <h2>สินเชื่อ</h2>
                             <div>
-                                <label>ยื่นขอสินเชื่อ 2 เดือนย้อนหลัง ทั้งสิ้นกี่แห่ง</label>
-                                <div>
-                                    <label>
-                                        <Field name="getSalary" component="input" type="radio" value="0"/>{' '}
-                                        0
-                                    </label>
-                                    <label>
-                                        <Field name="getSalary" component="input" type="radio" value="1-2"/>{' '}
-                                        1-2
-                                    </label>
-                                    <label>
-                                        <Field name="getSalary" component="input" type="radio" value="3-5"/>{' '}
-                                        3-5
-                                    </label>
-                                    <label>
-                                        <Field name="getSalary" component="input" type="radio" value="6-10"/>{' '}
-                                        6-10
-                                    </label>
-                                    <label>
-                                        <Field name="getSalary" component="input" type="radio" value="10+"/>{' '}
-                                        10+
-                                    </label>
-                                </div>
-                            </div>
-                            {/* Section 6 */}
-                            <h2>เงินยืม</h2>
-                            <div>
-                                <label htmlFor="obective">จุดประสงค์ในการขอยืม</label>
+                                <label htmlFor="obective">วัตถุประสงค์ในการขอสินเชื่อ</label>
                                 <Field name="obective" component="input" type="text"/>
                             </div>
                             <div>
@@ -544,7 +644,7 @@ class GeneralForm extends Component {
                                 <Field name="MinimumLimit" component="input" type="number"/>
                             </div>
                             <div>
-                                <label htmlFor="promptPay">ต้องการโอนเงินเข้าบัญชีพร้อมเพย์ โปรดระบุตัวเลขบัตรประชาชนหรือเบอร์มือถือ</label>
+                                <label htmlFor="promptPay">โอนเงินแบบพร้อมเพย์ ระบุ เลขบัตรประชาชน เบอร์มือถือ</label>
                                 <Field name="promptPay" component="input" type="number"/>
                             </div>
                             <div>
