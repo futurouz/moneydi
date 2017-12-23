@@ -7,7 +7,7 @@ const First = () => {
             <div className="firstContainer">
                 <h1>เงินยืม ไม่มีดอกเบี้ย คืนสิ้นเดือน</h1>
                 <h3>MoneyDi</h3>
-                <Link to="/MoneyDiApp">
+                <Link to="/register">
                     <span>ใบสมัคร</span>
                 </Link>
             </div>

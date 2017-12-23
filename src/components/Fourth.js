@@ -28,7 +28,7 @@ const Fourth = () => {
                 </ol>
             </div>
             <div className="row">
-                <Link to="/MoneyDiApp">
+                <Link to="/register">
                     <span>ใบสมัคร</span>
                 </Link>
             </div>
