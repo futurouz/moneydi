@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import Form from './Form'
 
 class GeneralForm extends Component {
-    
+
     componentWillMount() {
         firebase.initializeApp({
             apiKey: "AIzaSyCK4qBLbIUGCXf937tMgnzWy5kr_Bgqmwg",
@@ -13,17 +13,26 @@ class GeneralForm extends Component {
             projectId: "moneydi-f61bd",
             storageBucket: "",
             messagingSenderId: "710399914064"
-        })
+        });
+
+    
     };
 
-    submit(values, dispatch, props) {
-        
-        var date = new Date().toUTCString().replace(", ", " ")
-        console.log(date)
-        const dbRefObject = firebase.database().ref().child('users').child(date);
-        dbRefObject.push().set(values);
-        
-        props.history.push('/thankyou');
+    submit(values, dispatch) {
+           firebase.auth().signInAnonymously().catch((e) => {
+               console.log(e.code + ' ' + e.message);
+           });
+            
+           firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                var uid = user.uid;
+                console.log(uid)
+                var userRef = firebase.database().ref().child(`users`).child(uid);
+                userRef.set(values);
+            } else {
+                console.log('User signout')
+            }
+        })
     }
 
     render() {
