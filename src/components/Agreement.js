@@ -8,8 +8,10 @@ class Agreement extends Component {
         firebase
             .auth()
             .onAuthStateChanged((user) => {
+                console.log('USER TOP ' + user)
                 var uid = user.uid;
                 var ref = firebase.database().ref('users/' + uid)
+                
                 ref.on('value', (data) => {
                     var phoneNumber = '+' + data.val().mobileNo;
 
@@ -32,11 +34,9 @@ class Agreement extends Component {
                             var code = prompt("Please enter you code", "xxxx");
                            
                             var credential = firebase.auth.PhoneAuthProvider.credential(confirmationResult.verificationId, code);
+                            console.log('USER BOTTOM ' + user)
 
-                            console.log(firebase.auth())
-                            console.log(credential)
-
-                            user.link(credential).then((user) => { 
+                            firebase.auth().currentUser.linkWithCredential(credential).then((user) => { 
                                 console.log("Anonymous account successfully upgraded", user);
                             }, (error) => {
                                 console.log("Error upgrading anonymous account", error);
