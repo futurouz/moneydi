@@ -11,14 +11,14 @@ class InfoForm extends Component {
            });
             
            firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                var uid = user.uid;
-                var userRef = firebase.database().ref().child(`users`).child(uid);
-                userRef.set(values);
-            } else {
-                console.log('User signout')
-            }
-        });
+                if (user) {
+                    var uid = user.uid;
+                    var userRef = firebase.database().ref().child(`users`).child(uid);
+                    userRef.set(values);
+                } else {
+                    console.log('User signout')
+                }
+            });
 
         props.history.push('/registerCon2');
     }

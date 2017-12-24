@@ -1,9 +1,56 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
-import {Link} from 'react-router-dom'
 import Form from './Form';
 
 class Agreement extends Component {
+
+    authWithPhone() {
+        firebase
+            .auth()
+            .onAuthStateChanged((user) => {
+                var uid = user.uid;
+                var ref = firebase.database().ref('users/' + uid)
+                ref.on('value', (data) => {
+                    var phoneNumber = '+' + data.val().mobileNo;
+
+
+                    firebase.auth().languageCode = 'th';
+                    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
+                            'size': 'invisible',
+                            'callback': function (response) {}
+                        });
+                    window.recaptchaVerifier = new firebase
+                        .auth
+                        .RecaptchaVerifier('recaptcha-container');
+                    var appVerifier = window.recaptchaVerifier;
+                    firebase
+                        .auth()
+                        .signInWithPhoneNumber(phoneNumber, appVerifier)
+                        .then(function (confirmationResult) {
+                            console.log(confirmationResult)
+                            window.confirmationResult = confirmationResult;
+                            var code = prompt("Please enter you code", "xxxx");
+                           
+                            var credential = firebase.auth.PhoneAuthProvider.credential(confirmationResult.verificationId, code);
+
+                            console.log(firebase.auth())
+                            console.log(credential)
+
+                            user.link(credential).then((user) => { 
+                                console.log("Anonymous account successfully upgraded", user);
+                            }, (error) => {
+                                console.log("Error upgrading anonymous account", error);
+                            });
+
+                        })
+                        .catch(function (error) {
+                            console.log(error)
+                        });
+                })
+            });
+
+    };
+
     render() {
         return (
             <Form>
@@ -142,7 +189,10 @@ class Agreement extends Component {
                         </p>
                     </div>
                 </div>
-                <Link to="thankyou">ยอมรับข้อตกลง</Link>
+                <div className="col-md-12 text-center" id="recaptcha-container"></div>
+                <button id="sign-in-button" onClick={this.authWithPhone}>
+                    ยอมรับข้อตกลง
+                </button>
             </Form>
         );
     }
