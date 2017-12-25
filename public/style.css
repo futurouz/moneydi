@@ -175,3 +175,63 @@ d .secondContainer h1 {
 .footer {
     padding: 10px;
 }
+
+.profileForm h1 {
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.profileForm button {
+    margin-top: 10px;
+}
+
+.infoForm h2 {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.infoForm label {
+    margin-top: 5px;
+}
+
+.infoForm form {
+    margin-top: 15px;
+}
+
+.infoForm button {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.creditForm h2 {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.creditForm button {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.agreement {
+    text-align: justify;
+}
+
+.agreement h2 {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.agreement button {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.thankyou p {
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: 15px;
+}
