@@ -36,7 +36,7 @@ class Agreement extends Component {
                             var credential = firebase.auth.PhoneAuthProvider.credential(confirmationResult.verificationId, code);
                             console.log('USER BOTTOM ' + user)
 
-                            firebase.auth().currentUser.linkWithCredential(credential).then((user) => { 
+                            firebase.auth().currentUser.linkWithCredentiallink(credential).then((user) => { 
                                 console.log("Anonymous account successfully upgraded", user);
                             }, (error) => {
                                 console.log("Error upgrading anonymous account", error);
