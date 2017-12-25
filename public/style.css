@@ -128,10 +128,22 @@ d .secondContainer h1 {
 }
 
 .fourthContainer span {
-    padding: 10px;
-    border-radius: 10%;
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
     background-color: #F5A623;
     color: white;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.fourthContainer h3 {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.fourthContainer ol {
+    margin-bottom: 30px;
 }
 
 .fifthContainer {
