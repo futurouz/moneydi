@@ -151,9 +151,25 @@ d .secondContainer h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 300px;
     width: 100%;
-    padding: 40px 150px 40px 150px;
+    margin-bottom: 50px;
+    text-align: justify;
+}
+
+.fifthContainer p {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.fifthContainer h5 {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+}
+
+.fifthContainer h2 {
+    font-weight: bold;
+    padding: 20px;
 }
 
 .footer {

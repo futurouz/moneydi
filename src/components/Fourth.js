@@ -6,7 +6,7 @@ const Fourth = () => {
         <div className="fourthContainer">
             <div className="row">
                 <div className="col-md-12">
-                    <h1>คุณสมบัติผู้สมัคร</h1>
+                    <h3>คุณสมบัติผู้สมัคร</h3>
                 </div>
             </div>
             <div className="row">

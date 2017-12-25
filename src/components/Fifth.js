@@ -5,12 +5,13 @@ const Fifth = () => {
         <div>
             <div className="fifthContainer">
                 <div className="row">
-                    <div className="col-md-12 text-center">
-                        <h1>"เราต้องการลดปัญหาเงินกู้นอกระบบ"</h1>
+                    <div className="col-md-12 col-xs-12 text-center">
+                        <h2>"เราต้องการลดปัญหาเงินกู้นอกระบบ"</h2>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-8 text-center">
+                    <div className="col-md-5 offset-md-2 col-xs-10 firstCol">
+                    <h5>ทางออกที่เป็นธรรมสำหรับมนุษย์เงินเดือน</h5><br />
                         <p>
                             มันนี่ดิเป็นสตาร์ทอัพที่อยากแก้ปัญหาความต้องการเงินเร่งด่วนชั่วคราวของมนุษย์เงินเดือน
                             เราเชื่อว่า ทุกวันที่เราไปทำงาน เราได้เงินเดือน และถ้าจำเป็นต้องใช้
