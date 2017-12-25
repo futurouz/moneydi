@@ -1,6 +1,14 @@
 .navBar {
-    border: 1px solid black;
     padding: 25px;
+}
+
+.navbar img {
+    margin: 15px;
+}
+
+.fixed-top {
+    background-color: white;
+    border-bottom: 0.7px solid #ececec;
 }
 
 .firstContainer {
@@ -177,7 +185,7 @@ d .secondContainer h1 {
 }
 
 .profileForm h1 {
-    margin-top: 30px;
+    margin-top: 120px;
     font-weight: bold;
 }
 
@@ -188,7 +196,7 @@ d .secondContainer h1 {
 .infoForm h2 {
     font-weight: bold;
     font-size: 20px;
-    margin-top: 15px;
+    margin-top: 30px;
 }
 
 .infoForm label {
@@ -196,7 +204,7 @@ d .secondContainer h1 {
 }
 
 .infoForm form {
-    margin-top: 15px;
+    margin-top: 120px;
 }
 
 .infoForm button {
@@ -207,7 +215,7 @@ d .secondContainer h1 {
 .creditForm h2 {
     font-weight: bold;
     font-size: 20px;
-    margin-top: 15px;
+    margin-top: 120px;
 }
 
 .creditForm button {
@@ -222,7 +230,7 @@ d .secondContainer h1 {
 .agreement h2 {
     font-weight: bold;
     font-size: 20px;
-    margin-top: 15px;
+    margin-top: 120px;
 }
 
 .agreement button {
