@@ -39,7 +39,7 @@
     padding: 20px;
     padding-left: 40px;
     padding-right: 40px;
-    background-color: #F5A623 ;
+    background-color: #F5A623;
     color: white;
     font-weight: bold;
     font-size: 17px;
@@ -69,12 +69,24 @@
 .secondContainer {
     width: 100%;
     padding: 40px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.secondContainer h1 {
+    margin-bottom: 50px;
+    font-weight: bold;
 }
 
 .secondContainer img {
     height: 150px;
     width: auto;
     margin-bottom: 20px;
+}
+
+.secondContainer p {
+   font-size: 22px;
+   font-weight: bold;
 }
 
 .thirdContainer {
