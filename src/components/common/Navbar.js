@@ -5,7 +5,7 @@ import logo from './../../img/logo.jpg';
 const Navbar = () => {
     return (
         <nav className="navbar fixed-top navbar-expand-lg navbar-light">
-            <a className="navbar-brand" href="#">
+            <a className="navbar-brand" href="/">
                 <img src={logo} width="40px;"/>
             </a>
             <button
@@ -22,18 +22,18 @@ const Navbar = () => {
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li className="nav-item active">
-                        <a className="nav-link" href="#">หน้าแรก
+                        <a className="nav-link" href="/">หน้าแรก
                             <span className="sr-only">(current)</span>
                         </a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">ผลิตภัณฑ์</a>
+                        <a className="nav-link" href="/#product">ผลิตภัณฑ์</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">คุณสมบัติผู้สมัคร</a>
+                        <a className="nav-link" href="/#qualification">คุณสมบัติผู้สมัคร</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">เกี่ยวกับเรา</a>
+                        <a className="nav-link" href="/#aboutus">เกี่ยวกับเรา</a>
                     </li>
                 </ul>
             </div>
