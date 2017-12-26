@@ -42,14 +42,14 @@ class RegisterAccountForm extends Component {
                 <div className="profileForm">
                     <div className="row">
                         <div className="col-md-4 offset-md-4">
-                            <div class="progress"> 
+                            <div className="progress">
                                 <div
-                                    class="progress-bar progress-bar-info account_progress"
+                                    className="progress-bar progress-bar-info account_progress"
                                     role="progressbar"
                                     aria-valuenow="33"
                                     aria-valuemin="0"
                                     aria-valuemax="100">
-                                    1/3  (33%)
+                                    1/3 (33%)
                                 </div>
                             </div>
 

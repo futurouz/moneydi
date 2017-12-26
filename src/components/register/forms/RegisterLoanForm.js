@@ -13,9 +13,9 @@ class RegisterLoanForm extends Component {
                 <div className="creditForm">
                     <div className="row">
                         <div className="col-md-4 offset-md-4">
-                         <div class="progress"> 
+                         <div className="progress"> 
                                 <div
-                                    class="progress-bar progress-bar-info loan_form"
+                                    className="progress-bar progress-bar-info loan_form"
                                     role="progressbar"
                                     aria-valuenow="100"
                                     aria-valuemin="0"
