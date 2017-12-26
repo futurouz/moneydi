@@ -45,11 +45,21 @@ class CreditForm extends Component {
                                 <h2>สินเชื่อ</h2>
                                 <div>
                                     <label htmlFor="obective">วัตถุประสงค์ในการขอสินเชื่อ</label>
-                                    <Field name="obective" component="input" type="text" className="form-control"/>
+                                    <Field
+                                        name="obective"
+                                        component="input"
+                                        type="text"
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div>
                                     <label htmlFor="limit">วงเงินที่ต้องการ (บาท)</label>
-                                    <Field name="limit" component="input" type="number" className="form-control"/>
+                                    <Field
+                                        name="limit"
+                                        component="input"
+                                        type="number"
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div>
                                     <label htmlFor="MinimumLimit">วงเงินขั้นต่ำที่ต้องการ (บาท)</label>
@@ -57,7 +67,8 @@ class CreditForm extends Component {
                                         name="MinimumLimit"
                                         component="input"
                                         type="number"
-                                        className="form-control"/>
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div>
                                     <label htmlFor="promptPay">โอนเงินแบบพร้อมเพย์ ระบุ เลขบัตรประชาชน เบอร์มือถือ</label>
@@ -76,7 +87,7 @@ class CreditForm extends Component {
                             </form>
                         </div>
                     </div>
-                         <div className="row">
+                    <div className="row">
                         <div className="col-md-4 offset-md-4">
                             <div className="progress">
                                 <div

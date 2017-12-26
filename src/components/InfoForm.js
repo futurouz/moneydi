@@ -50,7 +50,8 @@ class InfoForm extends Component {
                                         name="citizenId"
                                         component="input"
                                         type="number"
-                                        className="form-control"/>
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div>
                                     <label htmlFor="age">อายุ</label>
@@ -58,7 +59,7 @@ class InfoForm extends Component {
                                 </div>
                                 <div>
                                     <label htmlFor="address">ที่อยู่ปัจจุบัน</label>
-                                    <Field name="address" component="input" type="text" className="form-control"/>
+                                    <Field name="address" component="input" type="text" className="form-control" required/>
                                 </div>
                                 <div>
                                     <label htmlFor="province">จังหวัด</label>
@@ -127,7 +128,7 @@ class InfoForm extends Component {
                                     <label>ประเภทที่อยู่อาศัย</label>
                                     <div>
                                         <label className="form-check-label">
-                                            <Field name="placeType" component="input" type="radio" value="บ้านเดี่ยว"/>{' '}
+                                            <Field name="placeType" component="input" type="radio" value="บ้านเดี่ยว" required/>{' '}
                                             บ้านเดี่ยว
                                         </label>
                                         <label className="form-check-label">
@@ -149,7 +150,7 @@ class InfoForm extends Component {
                                     <label>สถานะการพักอำศัย</label>
                                     <div>
                                         <label className="form-check-label">
-                                            <Field name="placeStatus" component="input" type="radio" value="บ้านของตนเอง"/>{' '}
+                                            <Field name="placeStatus" component="input" type="radio" value="บ้านของตนเอง" required/>{' '}
                                             บ้านของตนเอง
                                         </label>
                                         <label className="form-check-label">
@@ -183,7 +184,8 @@ class InfoForm extends Component {
                                                 name="edu"
                                                 component="input"
                                                 type="radio"
-                                                value="ต่ำกว่ามัธยมปลาย/ปวช./เทียบเท่า"/>{' '}
+                                                value="ต่ำกว่ามัธยมปลาย/ปวช./เทียบเท่า"
+                                                required/>{' '}
                                             ต่ำกว่ามัธยมปลาย/ปวช./เทียบเท่า
                                         </label>
                                         <label className="form-check-label">
@@ -208,7 +210,7 @@ class InfoForm extends Component {
                                     <label>สถานะ</label>
                                     <div>
                                         <label className="form-check-label">
-                                            <Field name="status" component="input" type="radio" value="โสด"/>{' '}
+                                            <Field name="status" component="input" type="radio" value="โสด" required/>{' '}
                                             โสด
                                         </label>
                                         <label className="form-check-label">
@@ -289,7 +291,8 @@ class InfoForm extends Component {
                                         name="contactFirstName"
                                         component="input"
                                         type="text"
-                                        className="form-control"/>
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div>
                                     <label htmlFor="contactLastName">นามสกุล</label>
@@ -297,7 +300,8 @@ class InfoForm extends Component {
                                         name="contactLastName"
                                         component="input"
                                         type="text"
-                                        className="form-control"/>
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div>
                                     <label htmlFor="contactMobile">โทรศัพท์มือถือ</label>
@@ -305,7 +309,8 @@ class InfoForm extends Component {
                                         name="contactMobile"
                                         component="input"
                                         type="number"
-                                        className="form-control"/>
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <label>ความสัมพ้ันธ์</label>
@@ -333,7 +338,7 @@ class InfoForm extends Component {
                                     <label>อาชีพ</label>
                                     <div>
                                         <label className="form-check-label">
-                                            <Field name="work" component="input" type="radio" value="ครู/อาจารย์"/>{' '}
+                                            <Field name="work" component="input" type="radio" value="ครู/อาจารย์" required/>{' '}
                                             ครู/อาจารย์
                                         </label>
                                         <label className="form-check-label">
@@ -406,7 +411,7 @@ class InfoForm extends Component {
                                     <label>สถานะการจ้างงาน</label>
                                     <div>
                                         <label className="form-check-label">
-                                            <Field name="workStatus" component="input" type="radio" value="พนักงานประจำ"/>{' '}
+                                            <Field name="workStatus" component="input" type="radio" value="พนักงานประจำ" required/>{' '}
                                             พนักงานประจำ
                                         </label>
                                         <label className="form-check-label">
@@ -429,7 +434,7 @@ class InfoForm extends Component {
                                 </div>
                                 <div>
                                     <label htmlFor="placeName">ชื่อสถานที่ทำงาน</label>
-                                    <Field name="placeName" component="input" type="text" className="form-control"/>
+                                    <Field name="placeName" component="input" type="text" className="form-control" required/>
                                 </div>
                                 <div>
                                     <label htmlFor="placeAddress">ที่อยู่สถานที่ทำงาน หรือเว็บไซต์</label>
@@ -437,7 +442,8 @@ class InfoForm extends Component {
                                         name="placeAddress"
                                         component="input"
                                         type="text"
-                                        className="form-control"/>
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div>
                                     <label htmlFor="placeMobile">โทรศัพท์</label>
@@ -445,7 +451,8 @@ class InfoForm extends Component {
                                         name="placeMobile"
                                         component="input"
                                         type="number"
-                                        className="form-control"/>
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <label>จำนวนพนักงานในที่ทำงาน</label>
@@ -481,7 +488,7 @@ class InfoForm extends Component {
                                     <label>อายุงาน</label>
                                     <div>
                                         <label className="form-check-label">
-                                            <Field name="workTime" component="input" type="radio" value="1 เดือน"/>{' '}
+                                            <Field name="workTime" component="input" type="radio" value="1 เดือน" required/>{' '}
                                             1 เดือน
                                         </label>
                                         <label className="form-check-label">
@@ -512,15 +519,16 @@ class InfoForm extends Component {
                                         name="workPosition"
                                         component="input"
                                         type="text"
-                                        className="form-control"/>
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div>
                                     <label htmlFor="dept">แผนก/ฝ่าย</label>
-                                    <Field name="dept" component="input" type="text" className="form-control"/>
+                                    <Field name="dept" component="input" type="text" className="form-control" required/>
                                 </div>
                                 <div>
                                     <label htmlFor="income">รายได้ประจำ ต่อเดือน</label>
-                                    <Field name="income" component="input" type="number" className="form-control"/>
+                                    <Field name="income" component="input" type="number" className="form-control" required/>
                                 </div>
                                 <div>
                                     <label htmlFor="overTime">ค่าล่วงเวลา ต่อเดือน</label>
@@ -542,7 +550,7 @@ class InfoForm extends Component {
                                     <label>วิธีรับเงินเดือน</label>
                                     <div>
                                         <label className="form-check-label">
-                                            <Field name="getSalary" component="input" type="radio" value="โอนผ่านธนาคาร"/>{' '}
+                                            <Field name="getSalary" component="input" type="radio" value="โอนผ่านธนาคาร" required/>{' '}
                                             โอนผ่านธนาคาร
                                         </label>
                                         <label className="form-check-label">
@@ -561,7 +569,8 @@ class InfoForm extends Component {
                                         name="countToGetSalary"
                                         component="input"
                                         type="number"
-                                        className="form-control"/>
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div>
                                     <label htmlFor="countToGetSalary">รับเงินวันที่</label>
@@ -649,7 +658,7 @@ class InfoForm extends Component {
                                     <label>บัตรกดเงินสด (ไม่ใช่บัตรATM)</label>
                                     <div>
                                         <label className="form-check-label">
-                                            <Field name="cashCard" component="input" type="radio" value="สมัครแล้วไม่ผ่าน"/>{' '}
+                                            <Field name="cashCard" component="input" type="radio" value="สมัครแล้วไม่ผ่าน" required/>{' '}
                                             สมัครแล้วไม่ผ่าน
                                         </label>
                                         <label className="form-check-label">
@@ -686,7 +695,7 @@ class InfoForm extends Component {
                                     <label>ยื่นขอสินเชื่อ 2 เดือนย้อนหลัง ทั้งสิ้นกี่แห่ง</label>
                                     <div>
                                         <label className="form-check-label">
-                                            <Field name="timeForInstallment" component="input" type="radio" value="0"/>{' '}
+                                            <Field name="timeForInstallment" component="input" type="radio" value="0" required/>{' '}
                                             0 ครั้ง
                                         </label>
                                         <label className="form-check-label">

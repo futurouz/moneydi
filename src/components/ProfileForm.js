@@ -50,11 +50,21 @@ class ProfileForm extends Component {
                             <form onSubmit={handleSubmit(this.submit)}>
                                 <div>
                                     <label htmlFor="firstName">ชื่อ</label>
-                                    <Field name="firstName" component="input" type="text" className="form-control"/>
+                                    <Field
+                                        name="firstName"
+                                        component="input"
+                                        type="text"
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div>
                                     <label htmlFor="lastName">นามสกุล</label>
-                                    <Field name="lastName" component="input" type="text" className="form-control"/>
+                                    <Field
+                                        name="lastName"
+                                        component="input"
+                                        type="text"
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div>
                                     <label htmlFor="mobileNo">โทรศัพท์มือถือ</label>
@@ -62,7 +72,8 @@ class ProfileForm extends Component {
                                         name="mobileNo"
                                         component="input"
                                         type="number"
-                                        className="form-control"/>
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <div>
                                     <label htmlFor="password">รหัสผ่าน</label>
@@ -70,7 +81,8 @@ class ProfileForm extends Component {
                                         name="password"
                                         component="input"
                                         type="password"
-                                        className="form-control"/>
+                                        className="form-control"
+                                        required/>
                                 </div>
                                 <button type="submit" className="btn btn-btn-info">Next</button>
                             </form>
@@ -79,12 +91,8 @@ class ProfileForm extends Component {
                     <div className="row">
                         <div className="col-md-4 offset-md-4">
                             <div className="progress">
-                                <div
-                                    className="progress-bar progress-bar-info profile_progress"
-                                    role="progressbar"
-                                    // aria-valuenow="33"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100">
+                                <div className="progress-bar progress-bar-info profile_progress" role="progressbar" // aria-valuenow="33"
+                                    aria-valuemin="0" aria-valuemax="100">
                                     หน้า 1 จาก 3
                                 </div>
                             </div>
