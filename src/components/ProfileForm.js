@@ -76,6 +76,20 @@ class ProfileForm extends Component {
                             </form>
                         </div>
                     </div>
+                    <div className="row">
+                        <div className="col-md-4 offset-md-4">
+                            <div className="progress">
+                                <div
+                                    className="progress-bar progress-bar-info profile_progress"
+                                    role="progressbar"
+                                    // aria-valuenow="33"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100">
+                                    หน้า 1 จาก 3
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </Form>
         )

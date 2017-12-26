@@ -209,7 +209,6 @@ d .secondContainer h1 {
 
 .infoForm button {
     margin-top: 10px;
-    margin-bottom: 20px;
 }
 
 .creditForm h2 {
@@ -220,7 +219,6 @@ d .secondContainer h1 {
 
 .creditForm button {
     margin-top: 10px;
-    margin-bottom: 20px;
 }
 
 .agreement {
@@ -242,4 +240,21 @@ d .secondContainer h1 {
     font-weight: bold;
     font-size: 30px;
     margin-top: 15px;
+}
+
+.progress {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.profile_progress {
+    width: 33%;
+}
+
+.info_progress {
+    width: 66%;
+}
+
+.credit_progress {
+    width: 100%;
 }
