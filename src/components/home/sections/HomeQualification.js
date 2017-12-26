@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 
-const Fourth = () => {
+const HomeQualification = () => {
     return (
         <div className="fourthContainer">
             <div className="row">
@@ -46,4 +46,4 @@ const Fourth = () => {
     );
 };
 
-export default Fourth
+export default HomeQualification

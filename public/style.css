@@ -184,19 +184,37 @@ d .secondContainer h1 {
     padding: 10px;
 }
 
-.profileForm h1 {
-    margin-top: 120px;
-    font-weight: bold;
+/* profile form */
+.profileForm {
+    margin-top: 100px;
+}
+
+.profileForm h2 {
+    font-size: 20px;
+    margin: 30px 0 20px 0;
+    color: #ffffff;
+    background-color: #0588cf;
+    padding: 10px 10px;
+    border-radius: 5px;
 }
 
 .profileForm button {
     margin-top: 10px;
 }
 
+/* info form */
+
+.infoForm {
+    margin-top: 100px;
+}
+
 .infoForm h2 {
-    font-weight: bold;
     font-size: 20px;
-    margin-top: 30px;
+    margin: 30px 0 20px 0;
+    color: #ffffff;
+    background-color: #0588cf;
+    padding: 10px 10px;
+    border-radius: 5px;
 }
 
 .infoForm label {
@@ -212,10 +230,18 @@ d .secondContainer h1 {
     margin-bottom: 20px;
 }
 
+/* credit form */
+.creditForm {
+    margin-top: 100px;
+}
+
 .creditForm h2 {
-    font-weight: bold;
     font-size: 20px;
-    margin-top: 120px;
+    margin: 30px 0 20px 0;
+    color: #ffffff;
+    background-color: #0588cf;
+    padding: 10px 10px;
+    border-radius: 5px;
 }
 
 .creditForm button {
@@ -223,14 +249,22 @@ d .secondContainer h1 {
     margin-bottom: 20px;
 }
 
+/* agreement */
+.agreement {
+    margin-top: 100px;
+}
+
 .agreement {
     text-align: justify;
 }
 
 .agreement h2 {
-    font-weight: bold;
     font-size: 20px;
-    margin-top: 120px;
+    margin: 30px 0 20px 0;
+    color: #ffffff;
+    background-color: #0588cf;
+    padding: 10px 10px;
+    border-radius: 5px;
 }
 
 .agreement button {
@@ -238,8 +272,31 @@ d .secondContainer h1 {
     margin-bottom: 20px;
 }
 
+.agreement .content {
+    height: 500px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 5px;
+}
+
+/* thank you */
+.thankyou {
+    margin-top: 100px;
+}
+
 .thankyou p {
     font-weight: bold;
     font-size: 30px;
     margin-top: 15px;
+}
+
+.btn-primary {
+    background-color: #0588cf !important;
+    border-color: #0588cf !important;
+}
+
+.btn-primary:hover {
+    background-color: #05659b !important;
+    border-color: #055c9b !important;
 }

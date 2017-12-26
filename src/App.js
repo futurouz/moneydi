@@ -3,21 +3,16 @@ import {createStore, combineReducers} from 'redux'
 import {reducer as formReducer} from 'redux-form'
 import {Provider} from 'react-redux'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Home from './components/Home';
-import ProfileForm from './components/ProfileForm';
-import InfoForm from './components/InfoForm';
-import CreditForm from './components/CreditForm';
-import Agreement from './components/Agreement';
-import Thanks from './components/Thanks';
+import Home from './components/home/Home';
 import {init as firebaseInit} from './firebase';
+import Register from "./components/register/Register";
 
-const rootReducer = combineReducers({form: formReducer})
-
-const store = createStore(rootReducer)
+const rootReducer = combineReducers({form: formReducer});
+const store = createStore(rootReducer);
 
 export default class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     firebaseInit()
   }
 
@@ -27,11 +22,7 @@ export default class App extends Component {
         <Router>
           <Switch>
             <Route exact path="/" component={Home}/>
-            <Route path="/register" component={ProfileForm}/>
-            <Route path="/registerCon" component={InfoForm}/>
-            <Route path="/registerCon2" component={CreditForm}/>
-            <Route path="/agreement" component={Agreement}/>
-            <Route path="/thankyou" component={Thanks}/>
+            <Route path="/register" component={Register}/>
           </Switch>
         </Router>
       </Provider>

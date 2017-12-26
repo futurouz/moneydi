@@ -1,9 +1,9 @@
 import React from 'react';
-import clock from './../img/clock.png';
-import zero from './../img/zero.png'
-import checkHand from './../img/checkHand.png';
+import clock from '../../../img/clock.png';
+import zero from '../../../img/zero.png'
+import checkHand from '../../../img/checkHand.png';
 
-const Second = () => {
+const HomeFeature = () => {
     return (
         <div className="secondContainer">
             <div className="row">
@@ -29,4 +29,4 @@ const Second = () => {
     )
 };
 
-export default Second;
+export default HomeFeature;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 
-const First = () => {
+const HomeJumbotron = () => {
     return (
         <div className="row">
             <div className="firstContainer">
@@ -16,4 +16,4 @@ const First = () => {
     )
 };
 
-export default First;
+export default HomeJumbotron;

@@ -1,75 +1,81 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
-import Form from './Form';
+import {Form, reduxForm} from 'redux-form'
 
-class Agreement extends Component {
+class RegisterAgreementForm extends Component {
 
-    authWithPhone() {
-        firebase
-            .auth()
-            .onAuthStateChanged((user) => {
-                var uid = user.uid;
-                var ref = firebase
-                    .database()
-                    .ref('users/' + uid)
+    static AUTH_STATE_VERIFY = 'verify';
 
-                ref.on('value', (data) => {
-                    var phoneNumber = '+' + data
-                        .val()
-                        .mobileNo;
+    constructor(props) {
+        super(props);
 
-                    firebase
-                        .auth()
-                        .languageCode = 'th';
-                    window.recaptchaVerifier = new firebase
-                        .auth
-                        .RecaptchaVerifier('sign-in-button', {
-                            'size': 'invisible',
-                            'callback': function (response) {}
-                        });
-                    window.recaptchaVerifier = new firebase
-                        .auth
-                        .RecaptchaVerifier('recaptcha-container');
-                    var appVerifier = window.recaptchaVerifier;
-                    firebase
-                        .auth()
-                        .signInWithPhoneNumber(phoneNumber, appVerifier)
-                        .then(function (confirmationResult) {
-                            window.confirmationResult = confirmationResult;
-                            var code = prompt("Please enter you code", "xxxxxx");
+        this.state = {
+            authState: RegisterAgreementForm.AUTH_STATE_VERIFY
+        };
+    }
 
-                            var credential = firebase
-                                .auth
-                                .PhoneAuthProvider
-                                .credential(confirmationResult.verificationId, code);
+    componentDidMount() {
+        this.initCaptcha();
+    }
 
-
-                            firebase.auth().currentUser.linkWithCredentiallink(credential)
-                                .then((user) => {
-                                    console.log("Anonymous account successfully upgraded", user);
-                                    window
-                                        .location
-                                        .replace('/thankyou');
-                                }, (error) => {
-                                    console.log("Error upgrading anonymous account", error);
-                                });
-
-                        })
-                        .catch(function (error) {
-                            console.log(error)
-                        });
-                })
-            });
-
+    initCaptcha() {
+        firebase.auth().languageCode = 'th';
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('accept-button', {
+            'size': 'invisible',
+            'callback': (response) => {
+                this.onSignInSubmit(response);
+            }
+        });
     };
 
+    onSignInSubmit(response) {
+        const phoneNumber = '+66866048855';
+        const appVerifier = window.recaptchaVerifier;
+        firebase
+            .auth()
+            .signInWithPhoneNumber(phoneNumber, appVerifier)
+            .then((confirmationResult) => {
+                window.confirmationResult = confirmationResult;
+                this.getVerificationCode((code) => {
+                    alert(code);
+                    this.linkAccount(confirmationResult, code);
+                });
+            })
+            .catch((error) => {
+                alert(error)
+            });
+    }
+
+    getVerificationCode(callback) {
+        const code = prompt("Please enter you code", "xxxxxx");
+        callback(code);
+    }
+
+    linkAccount(confirmationResult, code) {
+        const credential = firebase
+            .auth
+            .PhoneAuthProvider
+            .credential(confirmationResult.verificationId, code);
+
+        firebase.auth().currentUser.linkWithCredentiallink(credential)
+            .then((user) => {
+                console.log("Anonymous account successfully upgraded", user);
+                window
+                    .location
+                    .replace('/thankyou');
+            }, (error) => {
+                console.log("Error upgrading anonymous account", error);
+            });
+    }
+
     render() {
+        const {handleSubmit, previousPage} = this.props;
         return (
-            <Form>
-                <div className="agreement">
-                    <div className="row">
-                        <div className="col-md-10 offset-md-1">
-                            <h2>ข้อตกลง</h2>
+            <div className="agreement">
+                <div className="row">
+                    <div className="col-md-4 offset-md-4">
+                        <h2>ข้อตกลง</h2>
+                        <div className="content">
                             <p>
                                 ข้าพเจ้าผู้มีชื่อปรากฏและลงลายมือชื่ออยู่ด้านหน้าของสัญญาฉบับนี้
                                 (ซึ่งต่อไปนี้จะเรียกว่า “ผู้กู้”) ขอให้คำมั่นต่อ บริษัท มันนี่ดิ จำกัด
@@ -200,25 +206,18 @@ class Agreement extends Component {
                             </p>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-12 text-center">
-                            <div id="recaptcha-container"></div>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-12 text-center">
-                            <button
-                                className="btn btn-primary"
-                                id="sign-in-button"
-                                onClick={this.authWithPhone}>
-                                ยอมรับข้อตกลง
-                            </button>
-                        </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-4 offset-md-4 text-center mt-2">
+                        <button type="button" className="btn btn-secondary" onClick={previousPage}>ก่อนหน้า</button>
+                        <button type="submit" className="btn btn-primary ml-2" id="accept-button">ยอมรับเงื่อนไข</button>
                     </div>
                 </div>
-            </Form>
+            </div>
         );
     }
-};
+}
 
-export default Agreement
+RegisterAgreementForm = reduxForm({form: 'general', destroyOnUnmount: false})(RegisterAgreementForm);
+
+export default RegisterAgreementForm

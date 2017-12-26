@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Third = () => {
+const HomeTable = () => {
     return (
         <div className="row">
             <div className="thirdContainer">
@@ -58,4 +58,4 @@ const Third = () => {
     );
 };
 
-export default Third;
+export default HomeTable;

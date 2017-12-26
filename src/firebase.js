@@ -17,5 +17,5 @@ export const init = () => {
         storageBucket: "moneydi-5556d.appspot.com",
         messagingSenderId: "196389492792"
     };
-    firebase.initializeApp(configDev);
+    firebase.initializeApp(configProd);
 };
