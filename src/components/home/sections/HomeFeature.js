@@ -5,7 +5,7 @@ import checkHand from '../../../img/checkHand.png';
 
 const HomeFeature = () => {
     return (
-        <div className="secondContainer">
+        <div className="secondContainer" id="product">
             <div className="row">
                 <div className="col-md-12 col-xs-12">
                     <h1>เงินให้ยืม มันนี่ดิ</h1>

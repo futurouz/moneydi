@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 const HomeQualification = () => {
     return (
-        <div className="fourthContainer">
+        <div className="fourthContainer" id="qualification">
             <div className="row">
                 <div className="col-md-12">
                     <h3>คุณสมบัติผู้สมัคร</h3>
@@ -21,7 +21,7 @@ const HomeQualification = () => {
             </div>
             <div className="row">
                 <div className="col-md-12">
-                    <h3>ก่อนสมัครเตรียม 4 อย่างนี้ให้พร้อม</h3>
+                    <h4>ก่อนสมัครเตรียม 4 อย่างนี้ให้พร้อม</h4>
                 </div>
             </div>
             <div className="row">
