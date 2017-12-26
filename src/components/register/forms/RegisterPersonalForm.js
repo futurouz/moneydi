@@ -6,6 +6,9 @@ import renderTextField from "../common/renderTextField";
 import renderOptionField from "../common/renderOptionField";
 
 class RegisterPersonalForm extends Component {
+
+    scrollToError(errors) {}
+
     render() {
         const {handleSubmit, previousPage} = this.props;
         return (
@@ -510,6 +513,16 @@ class RegisterPersonalForm extends Component {
     };
 }
 
-RegisterPersonalForm = reduxForm({form: 'general', destroyOnUnmount: false, forceUnregisterOnUnmount: true, validate})(RegisterPersonalForm);
+RegisterPersonalForm = reduxForm({
+    form: 'general',
+    destroyOnUnmount: false,
+    forceUnregisterOnUnmount: true,
+    validate,
+    onSubmitFail: ((errors) => {
+        let arrayError = Object.keys(errors);
+        let target = document.querySelector(`input[name="${arrayError[0]}"]`);
+        target.scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+    })
+})(RegisterPersonalForm);
 
 export default RegisterPersonalForm
