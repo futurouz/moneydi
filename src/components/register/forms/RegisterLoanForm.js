@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Form, Field, reduxForm} from 'redux-form'
 import renderTextField from "../common/renderTextField";
+import validate from "../common/validate";
+
 
 class RegisterLoanForm extends Component {
 
@@ -11,6 +13,16 @@ class RegisterLoanForm extends Component {
                 <div className="creditForm">
                     <div className="row">
                         <div className="col-md-4 offset-md-4">
+                         <div class="progress"> 
+                                <div
+                                    class="progress-bar progress-bar-info loan_form"
+                                    role="progressbar"
+                                    aria-valuenow="100"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100">
+                                    3/3  (100%)
+                                </div>
+                            </div>
                             <h2>สินเชื่อ</h2>
                             <Field
                                 name="objective"
@@ -55,6 +67,6 @@ class RegisterLoanForm extends Component {
     };
 }
 
-RegisterLoanForm = reduxForm({form: 'general', destroyOnUnmount: false})(RegisterLoanForm);
+RegisterLoanForm = reduxForm({form: 'general', destroyOnUnmount: false, validate})(RegisterLoanForm);
 
 export default RegisterLoanForm

@@ -36,37 +36,36 @@ class RegisterAccountForm extends Component {
     }
 
     render() {
-        const { handleSubmit } = this.props;
+        const {handleSubmit} = this.props;
         return (
             <Form onSubmit={handleSubmit}>
                 <div className="profileForm">
                     <div className="row">
                         <div className="col-md-4 offset-md-4">
+                            <div class="progress"> 
+                                <div
+                                    class="progress-bar progress-bar-info account_progress"
+                                    role="progressbar"
+                                    aria-valuenow="33"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100">
+                                    1/3  (33%)
+                                </div>
+                            </div>
+
                             <h2>โปรไฟล์</h2>
-                            <Field
-                                name="firstName"
-                                component={renderTextField}
-                                type="text"
-                                label="ชื่อ"
-                            />
-                            <Field
-                                name="lastName"
-                                component={renderTextField}
-                                type="text"
-                                label="นามสกุล"
-                            />
+                            <Field name="firstName" component={renderTextField} type="text" label="ชื่อ"/>
+                            <Field name="lastName" component={renderTextField} type="text" label="นามสกุล"/>
                             <Field
                                 name="mobileNo"
                                 component={renderTextField}
-                                type="text"
-                                label="โทรศัพท์มือถือ"
-                            />
+                                type="number"
+                                label="โทรศัพท์มือถือ"/>
                             <Field
                                 name="password"
                                 component={renderTextField}
                                 type="text"
-                                label="รหัสผ่าน"
-                            />
+                                label="รหัสผ่าน"/>
                             <div className="text-center">
                                 <button type="submit" className="btn btn-primary">ถัดไป</button>
                             </div>
@@ -78,11 +77,6 @@ class RegisterAccountForm extends Component {
     }
 }
 
-RegisterAccountForm = reduxForm({
-    form: 'general',
-    destroyOnUnmount: false,
-    forceUnregisterOnUnmount: true,
-    validate
-})(RegisterAccountForm);
+RegisterAccountForm = reduxForm({form: 'general', destroyOnUnmount: false, forceUnregisterOnUnmount: true, validate})(RegisterAccountForm);
 
 export default RegisterAccountForm

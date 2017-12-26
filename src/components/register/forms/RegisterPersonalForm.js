@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form'
 import Form from "redux-form/es/Form";
+import validate from "../common/validate";
 import renderTextField from "../common/renderTextField";
 import renderOptionField from "../common/renderOptionField";
 
@@ -13,6 +14,16 @@ class RegisterPersonalForm extends Component {
                 <div className="infoForm">
                     <div className="row">
                         <div className="col-md-4 offset-md-4 ">
+                           <div class="progress"> 
+                                <div
+                                    class="progress-bar progress-bar-info personal_form"
+                                    role="progressbar"
+                                    aria-valuenow="66"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100">
+                                    2/3  (66%)
+                                </div>
+                            </div>
 
                             {/* Personal */}
                             <h2>ประวัติส่วนตัวผู้สมัคร</h2>
@@ -20,7 +31,7 @@ class RegisterPersonalForm extends Component {
                             <Field
                                 name="citizenId"
                                 component={renderTextField}
-                                type="text"
+                                type="number"
                                 label="เลขที่บัตรประชาชน"
                             />
                             <Field
@@ -192,7 +203,7 @@ class RegisterPersonalForm extends Component {
                             <Field
                                 name="contactMobile"
                                 component={renderTextField}
-                                type="text"
+                                type="number"
                                 label="โทรศัพท์มือถือ"
                             />
                             <Field
@@ -444,7 +455,8 @@ class RegisterPersonalForm extends Component {
 RegisterPersonalForm = reduxForm({
     form: 'general',
     destroyOnUnmount: false,
-    forceUnregisterOnUnmount: true
+    forceUnregisterOnUnmount: true,
+    validate
 })(RegisterPersonalForm);
 
 export default RegisterPersonalForm
