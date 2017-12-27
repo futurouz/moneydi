@@ -4,7 +4,7 @@ const HomeTable = () => {
     return (
         <div className="row">
             <div className="thirdContainer">
-                <div className="col-md-10 offset-md-1 col-xs-10">
+                <div>
                     <table>
                         <tbody>
                             <tr>
