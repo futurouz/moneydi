@@ -11,7 +11,7 @@ class RegisterThankForm extends Component {
             <Form onSubmit={handleSubmit}>
                 <div className="thankyou">
                     <div className="row content">
-                        <div className="col-md-4 offset-md-4">
+                        <div className="col-md-4 offset-md-4 text-center">
                             <p className="emphasize">
                                 ขอบคุณสำหรับเวลาและความสนใจ มันนี่ดิได้รับใบสมัครจากคุณเป็นที่เรียบร้อย ใบสมัครจะได้รับการพิจารณาเมื่อได้รับหลักฐาน
                             </p>
