@@ -13,21 +13,25 @@ class Register extends Component {
         super(props);
         this.nextPage = this.nextPage.bind(this);
         this.previousPage = this.previousPage.bind(this);
+        this.submitForm = this.submitForm.bind(this);
         this.state = {
             page: 1
         }
     }
 
     nextPage() {
-        this.setState({ page: this.state.page + 1 })
+        this.setState({ page: this.state.page + 1 });
     }
 
     previousPage() {
-        this.setState({ page: this.state.page - 1 })
+        this.setState({ page: this.state.page - 1 });
+    }
+
+    submitForm() {
+        this.nextPage();
     }
 
     render() {
-        const { onSubmit } = this.props;
         const { page } = this.state;
         return (
             <div>
@@ -44,16 +48,10 @@ class Register extends Component {
                 {page === 3 && (
                     <RegisterLoanForm
                         previousPage={this.previousPage}
-                        onSubmit={this.nextPage}
+                        onSubmit={this.submitForm}
                     />
                 )}
                 {page === 4 && (
-                    <RegisterAgreementForm
-                        previousPage={this.previousPage}
-                        onSubmit={this.nextPage}
-                    />
-                )}
-                {page === 5 && (
                     <RegisterThankForm
                         previousPage={this.previousPage}
                         onSubmit={this.nextPage}
@@ -63,9 +61,5 @@ class Register extends Component {
         )
     }
 }
-
-Register.propTypes = {
-    // onSubmit: PropTypes.func.isRequired
-};
 
 export default Register

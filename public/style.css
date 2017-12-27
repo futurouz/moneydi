@@ -301,10 +301,13 @@
     margin-top: 100px;
 }
 
-.thankyou p {
-    font-weight: bold;
-    font-size: 30px;
-    margin-top: 15px;
+.thankyou .content {
+    padding-top: 20px;
+}
+
+.thankyou .emphasize {
+    margin-top: 20px;
+    font-size: 1.25rem;
 }
 
 .btn-primary {
@@ -318,7 +321,13 @@
 }
 
 .progress {
-    margin-top: 40px;
+    margin-top: 30px;
+    height: 1.5rem !important;
+    font-size: 1rem !important;
+}
+
+.progress-bar {
+    background-color: #0588cf !important;
 }
 
 .account_progress {
@@ -331,4 +340,14 @@
 
 .loan_form {
     width: 100%;
+}
+
+.option-invalid-feedback {
+    margin-top: .25rem;
+    font-size: .875rem;
+    color: #dc3545;
+}
+
+.form-group .title {
+    font-weight: bold;
 }

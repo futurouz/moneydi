@@ -1,20 +1,24 @@
 import React from 'react'
+import Field from "redux-form/es/Field";
 
-const renderOptionField = ({ input, label, options, meta: { touched, error } }) => {
+const renderOptionField = ({ input, label, required, options, meta: { touched, error } }) => {
     return (
         <div className="form-group">
-            <label>{label}</label>
-            <div>
-            {options.map(function(option, i){
-                return (
-                    <div className="form-check form-check-inline" key={i}>
-                        <label className="form-check-label">
-                            <input className="form-check-input" type="radio" name={input.name} id="inlineRadio1" value={option.value}/> {option.label}
-                        </label>
-                    </div>
-                );
-            })}
+            <label className="title">{label} {required && '*'}</label>
+            <div className={ `${touched && error && 'form-control is-invalid'}` }>
+                {options.map(function(option, i){
+                    return (
+                        <div className="form-check form-check-inline" key={i}>
+                            <label className="form-check-label">
+                                <Field name={input.name} component="input" type="radio" value={option.value} className="form-check-input"/>
+                                {' '}
+                                {option.label}
+                            </label>
+                        </div>
+                    );
+                })}
             </div>
+            {touched && error && <div className="option-invalid-feedback">{error}</div>}
         </div>
     );
 };

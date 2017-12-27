@@ -42,6 +42,7 @@ class RegisterAccountForm extends Component {
                 <div className="profileForm">
                     <div className="row">
                         <div className="col-md-4 offset-md-4">
+                            {/* Progress Bar */}
                             <div className="progress">
                                 <div
                                     className="progress-bar progress-bar-info account_progress"
@@ -54,18 +55,32 @@ class RegisterAccountForm extends Component {
                             </div>
 
                             <h2>โปรไฟล์</h2>
-                            <Field name="firstName" component={renderTextField} type="text" label="ชื่อ"/>
-                            <Field name="lastName" component={renderTextField} type="text" label="นามสกุล"/>
                             <Field
                                 name="mobileNo"
                                 component={renderTextField}
-                                type="number"
-                                label="โทรศัพท์มือถือ"/>
+                                type="text"
+                                label="โทรศัพท์มือถือ (username)"
+                                required={true}
+                                maxLength={10}
+                                help="ตัวเลข 10 ตัว เช่น 0971177937"/>
+                            <Field
+                                name="firstName"
+                                component={renderTextField}
+                                type="text"
+                                label="ชื่อ"
+                                required={true}/>
+                            <Field
+                                name="lastName"
+                                component={renderTextField}
+                                type="text"
+                                label="นามสกุล"
+                                required={true}/>
                             <Field
                                 name="password"
                                 component={renderTextField}
                                 type="text"
-                                label="รหัสผ่าน"/>
+                                label="รหัสผ่าน"
+                                required={true}/>
                             <div className="text-center">
                                 <button type="submit" className="btn btn-primary">ถัดไป</button>
                             </div>

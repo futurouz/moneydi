@@ -16,6 +16,7 @@ class RegisterPersonalForm extends Component {
                 <div className="infoForm">
                     <div className="row">
                         <div className="col-md-4 offset-md-4 ">
+                            {/* Progress Bar */}
                             <div className="progress">
                                 <div
                                     className="progress-bar progress-bar-info personal_form"
@@ -33,21 +34,32 @@ class RegisterPersonalForm extends Component {
                             <Field
                                 name="citizenId"
                                 component={renderTextField}
-                                type="number"
+                                type="text"
                                 label="เลขที่บัตรประชาชน"
-                                className="required"/>
-                            <Field name="age" component={renderTextField} type="text" label="อายุ"/>
+                                required={true}/>
+                            <Field
+                                name="age"
+                                component={renderTextField}
+                                type="text"
+                                label="อายุ"
+                                required={true}/>
                             <Field
                                 name="address"
                                 component={renderTextField}
                                 type="text"
-                                label="ที่อยู่ปัจจุบัน"/>
-                            <Field name="province" component={renderTextField} type="text" label="จังหวัด"/>
-                            <Field name="province" component={renderTextField} type="text" label="จังหวัด"/>
+                                label="ที่อยู่ปัจจุบัน"
+                                required={true}/>
+                            <Field
+                                name="province"
+                                component={renderTextField}
+                                type="text"
+                                label="จังหวัด"
+                                required={true}/>
                             <Field
                                 name="addressAge"
                                 component={renderOptionField}
                                 label="ที่อยู่ปัจจุบันอยู่มานานเท่าไร"
+                                required={true}
                                 options={[
                                 {
                                     value: '1 เดือน',
@@ -64,12 +76,12 @@ class RegisterPersonalForm extends Component {
                                 }, {
                                     value: 'มากกว่า 2 ปี',
                                     label: 'มากกว่า 2 ปี'
-                                }
-                            ]}/>
+                                }]}/>
                             <Field
                                 name="mobileAge"
                                 component={renderOptionField}
                                 label="เบอร์มือถือใช้มานานเท่าไร"
+                                required={true}
                                 options={[
                                 {
                                     value: '1 เดือน',
@@ -88,12 +100,23 @@ class RegisterPersonalForm extends Component {
                                     label: 'มากกว่า 2 ปี'
                                 }
                             ]}/>
-                            <Field name="lineId" component={renderTextField} type="text" label="LINE ID"/>
-                            <Field name="email" component={renderTextField} type="text" label="Email"/>
+                            <Field
+                                name="lineId"
+                                component={renderTextField}
+                                type="text"
+                                label="LINE ID"
+                                required={true}/>
+                            <Field
+                                name="email"
+                                component={renderTextField}
+                                type="text"
+                                label="Email"
+                                required={true}/>
                             <Field
                                 name="homeType"
                                 component={renderOptionField}
                                 label="ประเภทที่อยู่อาศัย"
+                                required={true}
                                 options={[
                                 {
                                     value: 'บ้านเดี่ยว',
@@ -112,7 +135,8 @@ class RegisterPersonalForm extends Component {
                             <Field
                                 name="homeStatus"
                                 component={renderOptionField}
-                                label="สถานะการพักอำศัย"
+                                label="สถานะการพักอาศัย"
+                                required={true}
                                 options={[
                                 {
                                     value: 'บ้านของตนเอง',
@@ -132,6 +156,7 @@ class RegisterPersonalForm extends Component {
                                 name="education"
                                 component={renderOptionField}
                                 label="การศึกษา"
+                                required={true}
                                 options={[
                                 {
                                     value: 'ต่ำกว่ามัธยมปลาย/ปวช./เทียบเท่า',
@@ -148,9 +173,10 @@ class RegisterPersonalForm extends Component {
                                 }
                             ]}/>
                             <Field
-                                name="status"
+                                name="marriageStatus"
                                 component={renderOptionField}
-                                label="สถานะ"
+                                label="สถานภาพ"
+                                required={true}
                                 options={[
                                 {
                                     value: 'โสด',
@@ -165,7 +191,28 @@ class RegisterPersonalForm extends Component {
                                     value: 'หย่า / หม้าย',
                                     label: 'หย่า / หม้าย'
                                 }
-                            ]}/> {/* Spouse */}
+                            ]}/>
+                            <Field
+                                name="hasMobileBanking"
+                                component={renderOptionField}
+                                label="คุณมีแอปธนาคาร/โมบายแบงกิ้ง เช่น K Plus, SCB Easy หรือไม่"
+                                required={true}
+                                options={[
+                                    {
+                                        value: 'มี',
+                                        label: 'มี'
+                                    }, {
+                                        value: 'ไม่มี',
+                                        label: 'ไม่มี'
+                                    }
+                                ]}/>
+                            <Field
+                                name="referenceContact"
+                                component={renderTextField}
+                                type="text"
+                                label="ถ้ามีคนที่เคยยืมเงินมันนี่ดิแนะนำมาสมัคร โปรดใส่ชื่อนามสกุล หรือเบอร์มือถือ"/>
+
+                            {/* Spouse */}
                             <h2>ข้อมูลคู่สมรส</h2>
 
                             <Field
@@ -198,28 +245,34 @@ class RegisterPersonalForm extends Component {
                                 name="coupleSalary"
                                 component={renderTextField}
                                 type="number"
-                                label="รายได้ (ต่อเดือน)"/> {/* Contact */}
+                                label="รายได้ (ต่อเดือน)"/>
+
+                            {/* Contact */}
                             <h2>บุคคลที่อนุญาตให้ติดต่อได้ (ไม่ใช่คู่สมรส)</h2>
 
                             <Field
                                 name="contactFirstName"
                                 component={renderTextField}
                                 type="text"
-                                label="ชื่อ"/>
+                                label="ชื่อ"
+                                required={true}/>
                             <Field
                                 name="contactLastName"
                                 component={renderTextField}
                                 type="text"
-                                label="นามสกุล"/>
+                                label="นามสกุล"
+                                required={true}/>
                             <Field
                                 name="contactMobile"
                                 component={renderTextField}
-                                type="number"
-                                label="โทรศัพท์มือถือ"/>
+                                type="text"
+                                label="โทรศัพท์มือถือ"
+                                required={true}/>
                             <Field
                                 name="relation"
                                 component={renderOptionField}
                                 label="ความสัมพันธ์"
+                                required={true}
                                 options={[
                                 {
                                     value: 'บิดา/มารดา',
@@ -234,13 +287,16 @@ class RegisterPersonalForm extends Component {
                                     value: 'เพื่อนร่วมงาน',
                                     label: 'เพื่อนร่วมงาน'
                                 }
-                            ]}/> {/* occupation */}
+                            ]}/>
+
+                            {/* occupation */}
                             <h2>ข้อมูลอาชีพและรายได้</h2>
 
                             <Field
                                 name="work"
                                 component={renderOptionField}
                                 label="อาชีพ"
+                                required={true}
                                 options={[
                                 {
                                     value: 'ครู/อาจารย์',
@@ -264,8 +320,8 @@ class RegisterPersonalForm extends Component {
                                     value: 'พนักงานบัญชี/การเงิน',
                                     label: 'พนักงานบัญชี/การเงิน'
                                 }, {
-                                    value: 'ักษาความปลอดภัย',
-                                    label: 'ักษาความปลอดภัย'
+                                    value: 'รักษาความปลอดภัย',
+                                    label: 'รักษาความปลอดภัย'
                                 }, {
                                     value: 'แม่บ้าน',
                                     label: 'แม่บ้าน'
@@ -289,7 +345,8 @@ class RegisterPersonalForm extends Component {
                             <Field
                                 name="workStatus"
                                 component={renderOptionField}
-                                label="สถานะการทำงาน"
+                                label="สถานะการจ้างงาน"
+                                required={true}
                                 options={[
                                 {
                                     value: 'พนักงานประจำ',
@@ -309,21 +366,25 @@ class RegisterPersonalForm extends Component {
                                 name="workName"
                                 component={renderTextField}
                                 type="text"
-                                label="ชื่อสถานที่ทำงาน"/>
+                                label="ชื่อสถานที่ทำงาน"
+                                required={true}/>
                             <Field
                                 name="workAddress"
                                 component={renderTextField}
                                 type="text"
-                                label="ที่อยู่สถานที่ทำงาน หรือเว็บไซต์"/>
+                                label="ที่อยู่สถานที่ทำงาน"
+                                required={true}/>
                             <Field
                                 name="workMobile"
                                 component={renderTextField}
                                 type="text"
-                                label="โทรศัพท์"/>
+                                label="โทรศัพท์"
+                                required={true}/>
                             <Field
                                 name="amountOfEmployee"
                                 component={renderOptionField}
                                 label="จำนวนพนักงานในที่ทำงาน"
+                                required={true}
                                 options={[
                                 {
                                     value: '1 คน',
@@ -346,20 +407,49 @@ class RegisterPersonalForm extends Component {
                                 }
                             ]}/>
                             <Field
+                                name="workAge"
+                                component={renderOptionField}
+                                label="อายุงาน"
+                                required={true}
+                                options={[
+                                    {
+                                        value: '1 เดือน',
+                                        label: '1 เดือน'
+                                    }, {
+                                        value: '2-4 เดือน',
+                                        label: '2-4 เดือน'
+                                    }, {
+                                        value: '5-11 เดือน',
+                                        label: '5-11 เดือน'
+                                    }, {
+                                        value: '1-2 ปี',
+                                        label: '1-2 ปี'
+                                    }, {
+                                        value: '3-5 ปี',
+                                        label: '3-5 ปี'
+                                    }, {
+                                        value: '6 ปีขึ้นไป',
+                                        label: '6 ปีขึ้นไป'
+                                    }
+                                ]}/>
+                            <Field
                                 name="workPosition"
                                 component={renderTextField}
                                 type="text"
-                                label="ตำแหน่งงาน"/>
+                                label="ตำแหน่งงาน"
+                                required={true}/>
                             <Field
                                 name="workDepartment"
                                 component={renderTextField}
                                 type="text"
-                                label="แผนก/ฝ่าย"/>
+                                label="แผนก/ฝ่าย"
+                                required={true}/>
                             <Field
                                 name="income"
                                 component={renderTextField}
                                 type="number"
-                                label="รายได้ประจำ ต่อเดือน"/>
+                                label="รายได้ประจำ ต่อเดือน"
+                                required={true}/>
                             <Field
                                 name="overTime"
                                 component={renderTextField}
@@ -371,9 +461,15 @@ class RegisterPersonalForm extends Component {
                                 type="number"
                                 label="รายได้อื่นๆต่อเดือน"/>
                             <Field
+                                name="lastMonthIncome"
+                                component={renderTextField}
+                                type="number"
+                                label="ยอดที่ได้รับจากบริษัทเดือนล่าสุด"/>
+                            <Field
                                 name="salaryMethod"
                                 component={renderOptionField}
                                 label="วิธีรับเงินเดือน"
+                                required={true}
                                 options={[
                                 {
                                     value: 'โอนผ่านธนาคาร',
@@ -388,65 +484,126 @@ class RegisterPersonalForm extends Component {
                             ]}/>
                             <Field
                                 name="getSalaryTimes"
-                                component={renderTextField}
-                                type="number"
-                                label="รับเงินเดือนเดือนละ (ครั้ง)"/>
+                                component={renderOptionField}
+                                label="รับเงินเดือนเดือนละ (ครั้ง)"
+                                required={true}
+                                options={[
+                                    {
+                                        value: '1 ครั้ง',
+                                        label: '1 ครั้ง'
+                                    }, {
+                                        value: '2 ครั้ง',
+                                        label: '2 ครั้ง'
+                                    }, {
+                                        value: 'มากกว่า 2 ครั้ง',
+                                        label: 'มากกว่า 2 ครั้ง'
+                                    }
+                                ]}/>
                             <Field
                                 name="getSalaryDate"
-                                component={renderTextField}
-                                type="date"
-                                label="รับเงินวันที่"/> {/* outcome */}
+                                component={renderOptionField}
+                                label="เงินเดือนออกวันที่"
+                                required={true}
+                                options={[
+                                    {
+                                        value: 'วันสุดท้าย',
+                                        label: 'วันสุดท้าย'
+                                    }, {
+                                        value: '25',
+                                        label: '25'
+                                    }, {
+                                        value: '26',
+                                        label: '26'
+                                    }, {
+                                        value: '27',
+                                        label: '27'
+                                    }, {
+                                        value: '28',
+                                        label: '28'
+                                    }, {
+                                        value: '29',
+                                        label: '29'
+                                    }, {
+                                        value: '1',
+                                        label: '1'
+                                    }, {
+                                        value: '2',
+                                        label: '2'
+                                    }, {
+                                        value: '3',
+                                        label: '3'
+                                    }, {
+                                        value: '4',
+                                        label: '4'
+                                    }, {
+                                        value: '5',
+                                        label: '5'
+                                    }
+                                ]}/>
+
+                            {/* outcome */}
                             <h2>ค่าใช้จ่าย</h2>
 
-                            <Field
-                                name="installment"
-                                component={renderTextField}
-                                type="number"
-                                label="ผ่อนรถ บาทต่อเดือน"/>
                             <Field
                                 name="rentHouse"
                                 component={renderTextField}
                                 type="number"
                                 label="ค่าเช่าบ้าน บาทต่อเดือน"/>
                             <Field
-                                name="loanHouse"
+                                name="houseInstallment"
                                 component={renderTextField}
                                 type="number"
                                 label="ผ่อนบ้าน บาทต่อเดือน"/>
                             <Field
-                                name="loanCredit"
+                                name="carInstallment"
                                 component={renderTextField}
                                 type="number"
-                                label="ผ่อนบัตรเครดิต บาทต่อเดือน"/>
-                            <Field
-                                name="creditDebt"
-                                component={renderTextField}
-                                type="number"
-                                label="หนี้บัตรเครดิต (ยอดคงค้าง)"/>
+                                label="ผ่อนรถ บาทต่อเดือน"/>
                             <Field
                                 name="loanInstallment"
                                 component={renderTextField}
                                 type="number"
-                                label="ผ่อนสินเชื่อบุคคล บาทต่อเดือน"/>
-                            <Field
-                                name="loanExtraDebt"
-                                component={renderTextField}
-                                type="number"
-                                label="ผ่อนหนี้นอกระบบ บาทต่อเดือน"/>
-                            <Field
-                                name="extraDebt"
-                                component={renderTextField}
-                                type="number"
-                                label="หนี้นอกระบบ (ยอดคงค้าง)"/>
+                                label="ผ่อนสินเชื่อส่วนบุคคล บาทต่อเดือน"/>
                             <Field
                                 name="loadExtraInstallment"
                                 component={renderTextField}
                                 type="number"
                                 label="ผ่อนสินเชื่อเช่าซื้ออื่นๆ บาทต่อเดือน"/>
                             <Field
+                                name="creditDebt"
+                                component={renderTextField}
+                                type="number"
+                                label="ยอดหนี้บัตรเครดิตคงค้าง"/>
+                            <Field
+                                name="loanCredit"
+                                component={renderTextField}
+                                type="number"
+                                label="ผ่อนบัตรเครดิต บาทต่อเดือน"/>
+                            <Field
+                                name="loanCoop"
+                                component={renderTextField}
+                                type="number"
+                                label="ยอดหนี้ยืมบริษัทหรือสหกรณ์"/>
+                            <Field
+                                name="loanFriend"
+                                component={renderTextField}
+                                type="number"
+                                label="ยอดหนี้ยืมเพื่อนหรือคนรู้จัก"/>
+                            <Field
+                                name="extraDebt"
+                                component={renderTextField}
+                                type="number"
+                                label="ยอดหนี้นอกระบบคงค้าง"/>
+                            <Field
+                                name="loanExtraDebt"
+                                component={renderTextField}
+                                type="number"
+                                label="ผ่อนหนี้นอกระบบ บาทต่อเดือน"/>
+                            <Field
                                 name="cashCard"
                                 component={renderOptionField}
                                 label="บัตรกดเงินสด (ไม่ใช่บัตร ATM)"
+                                required={true}
                                 options={[
                                 {
                                     value: 'สมัครแล้วไม่ผ่าน',
@@ -476,6 +633,7 @@ class RegisterPersonalForm extends Component {
                                 name="loanTimeIn2Month"
                                 component={renderOptionField}
                                 label="ยื่นขอสินเชื่อ 2 เดือนย้อนหลัง ทั้งสิ้นกี่แห่ง"
+                                required={true}
                                 options={[
                                 {
                                     value: '0 ครั้ง',
@@ -501,9 +659,23 @@ class RegisterPersonalForm extends Component {
                                 component={renderTextField}
                                 type="number"
                                 label="ทำบุญประมาณเดือนละเท่าไร"/>
+                            <Field
+                                name="withdrawAfterSalary"
+                                component={renderOptionField}
+                                label="เวลาเงินเดือนเข้า คุณจะถอนเงิน"
+                                required={true}
+                                options={[
+                                    {
+                                        value: 'ถอนออกทั้งหมดเป็นเงินสดทันที',
+                                        label: 'ถอนออกทั้งหมดเป็นเงินสดทันที'
+                                    }, {
+                                        value: 'ถอนเท่าที่ใช้',
+                                        label: 'ถอนเท่าที่ใช้'
+                                    }
+                                ]}/>
                             <div className="text-center">
-                                <button type="button" className="btn btn-secondary" onClick={previousPage}>Previous</button>
-                                <button type="submit" className="btn btn-primary ml-2">Next</button>
+                                <button type="button" className="btn btn-secondary" onClick={previousPage}>ก่อนหน้า</button>
+                                <button type="submit" className="btn btn-primary ml-2">ถัดไป</button>
                             </div>
                         </div>
                     </div>
