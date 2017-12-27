@@ -44,7 +44,7 @@ class RegisterThankForm extends Component {
                                 การทิปหรือไม่ทิปไม่มีผลกับการอนุมัติสินเชื่อ<br/>
                             </p>
 
-                            <div className="text-center mt-2">
+                            <div className="text-center">
                                 <button type="submit" className="btn btn-primary ml-2">ส่งหลักฐาน</button>
                             </div>
                         </div>

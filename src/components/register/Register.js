@@ -6,6 +6,7 @@ import RegisterPersonalForm from "./forms/RegisterPersonalForm";
 import RegisterAgreementForm from "./forms/RegisterAgreementForm";
 import RegisterLoanForm from "./forms/RegisterLoanForm";
 import RegisterThankForm from "./forms/RegisterThankForm";
+import RegisterUploadFileForm from "./forms/RegisterUploadFileForm";
 
 class Register extends Component {
 
@@ -14,6 +15,7 @@ class Register extends Component {
         this.nextPage = this.nextPage.bind(this);
         this.previousPage = this.previousPage.bind(this);
         this.submitForm = this.submitForm.bind(this);
+        this.uploadFile = this.uploadFile.bind(this);
         this.state = {
             page: 1
         }
@@ -29,6 +31,11 @@ class Register extends Component {
 
     submitForm() {
         this.nextPage();
+    }
+
+    uploadFile() {
+        alert('อัพโหลดหลักฐานเรียบร้อยแล้ว ขอบคุณที่ใช้บริการมันนี่ดิค่ะ');
+        this.props.history.push('/');
     }
 
     render() {
@@ -53,8 +60,12 @@ class Register extends Component {
                 )}
                 {page === 4 && (
                     <RegisterThankForm
-                        previousPage={this.previousPage}
                         onSubmit={this.nextPage}
+                    />
+                )}
+                {page === 5 && (
+                    <RegisterUploadFileForm
+                        onSubmit={this.uploadFile}
                     />
                 )}
             </div>
