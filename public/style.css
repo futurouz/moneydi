@@ -30,6 +30,7 @@
     background-size: cover;
     position: relative;
     z-index: 1;
+    background-image: -webkit-linear-gradient(rgba(68, 194, 233, 0.25) 0%, rgba(68, 150, 233, 0.25) 100%), url("img/bg.jpg");
 }
 
 .firstContainer .fadeBg {
@@ -39,7 +40,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-image: url("img/bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     opacity: .9;
@@ -107,6 +107,8 @@
     top: 0;
     left: 0;
     display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     padding: 50px;
     background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 1) 100%), url("img/table.jpg");
@@ -139,6 +141,20 @@
     width: 100%;
     padding: 40px;
     margin-bottom: 60px;
+}
+
+@media (min-width: 1500px) {
+    .fourthContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .content {
+        position: relative;
+        text-align: left;
+    }
+  
 }
 
 .fourthContainer span {
