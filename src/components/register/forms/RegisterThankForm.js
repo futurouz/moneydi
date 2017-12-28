@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Form, reduxForm} from "redux-form";
 import Field from "redux-form/es/Field";
 import renderTextField from "../common/renderTextField";
+import validate from "../common/validate";
 
 class RegisterThankForm extends Component {
 
@@ -30,14 +31,14 @@ class RegisterThankForm extends Component {
                                 เพื่อให้บริการนี้ช่วยมนุษย์เงินเดือนคนอื่นและช่วยคุณในเดือนหน้าๆต่อไป เราสนับสนุนให้คุณบริจาค
                             </p>
                             <hr/>
-                            <p className="emphasize">
+                            <div className="emphasize">
                                 <Field
                                     name="tipAmount"
                                     component={renderTextField}
                                     type="number"
                                     label="จำนวนทิป (บาท)"
                                     help="แนะนำ 4-9% ของยอดกู้ หรือ xxx - xxx บาท (xxx = 4% x ยอดขอกู้)"/>
-                            </p>
+                            </div>
                             <hr/>
                             <p className="emphasize">
                                 เราช่วยคุณ คุณช่วยเรา เพื่อให้เราช่วยคนอื่นต่อไป<br/>
@@ -55,6 +56,16 @@ class RegisterThankForm extends Component {
     }
 }
 
-RegisterThankForm = reduxForm({form: 'general', destroyOnUnmount: false})(RegisterThankForm);
+RegisterThankForm = reduxForm({
+    form: 'apply',
+    destroyOnUnmount: false,
+    forceUnregisterOnUnmount: true,
+    validate,
+    onSubmitFail: ((errors) => {
+        let arrayError = Object.keys(errors);
+        let target = document.querySelector(`input[name="${arrayError[0]}"]`);
+        target.scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+    })
+})(RegisterThankForm);
 
 export default RegisterThankForm;

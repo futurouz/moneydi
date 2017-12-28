@@ -218,6 +218,6 @@ class RegisterAgreementForm extends Component {
     }
 }
 
-RegisterAgreementForm = reduxForm({form: 'general', destroyOnUnmount: false})(RegisterAgreementForm);
+RegisterAgreementForm = reduxForm({form: 'apply', destroyOnUnmount: false})(RegisterAgreementForm);
 
 export default RegisterAgreementForm

@@ -2,38 +2,8 @@ import React, {Component} from 'react';
 import {Form, Field, reduxForm} from 'redux-form'
 import renderTextField from "../common/renderTextField";
 import validate from "../common/validate";
-import firebase from 'firebase';
 
 class RegisterAccountForm extends Component {
-
-    submit(values, dispatch, props) {
-        firebase
-            .auth()
-            .signInAnonymously()
-            .catch((e) => {
-                console.log(e.code + ' ' + e.message);
-            });
-
-        firebase
-            .auth()
-            .onAuthStateChanged((user) => {
-                if (user) {
-                    const uid = user.uid;
-                    const userRef = firebase
-                        .database()
-                        .ref()
-                        .child(`users`)
-                        .child(uid);
-                    userRef.set(values);
-                } else {
-                    console.log('User signout')
-                }
-            });
-
-        props
-            .history
-            .push('/registerCon2');
-    }
 
     render() {
         const {handleSubmit} = this.props;
@@ -92,6 +62,16 @@ class RegisterAccountForm extends Component {
     }
 }
 
-RegisterAccountForm = reduxForm({form: 'general', destroyOnUnmount: false, forceUnregisterOnUnmount: true, validate})(RegisterAccountForm);
+RegisterAccountForm = reduxForm({
+    form: 'apply',
+    destroyOnUnmount: false,
+    forceUnregisterOnUnmount: true,
+    validate,
+    onSubmitFail: ((errors) => {
+        let arrayError = Object.keys(errors);
+        let target = document.querySelector(`input[name="${arrayError[0]}"]`);
+        target.scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+    })
+})(RegisterAccountForm);
 
 export default RegisterAccountForm

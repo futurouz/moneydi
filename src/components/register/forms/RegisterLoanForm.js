@@ -161,6 +161,15 @@ class RegisterLoanForm extends Component {
     };
 }
 
-RegisterLoanForm = reduxForm({form: 'general', destroyOnUnmount: false, validate})(RegisterLoanForm);
+RegisterLoanForm = reduxForm({
+    form: 'apply',
+    destroyOnUnmount: false,
+    validate,
+    onSubmitFail: ((errors) => {
+        let arrayError = Object.keys(errors);
+        let target = document.querySelector(`input[name="${arrayError[0]}"]`);
+        target.scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+    })
+})(RegisterLoanForm);
 
 export default RegisterLoanForm

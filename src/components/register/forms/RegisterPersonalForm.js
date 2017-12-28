@@ -686,7 +686,7 @@ class RegisterPersonalForm extends Component {
 }
 
 RegisterPersonalForm = reduxForm({
-    form: 'general',
+    form: 'apply',
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
     validate,

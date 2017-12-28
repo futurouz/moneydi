@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Form, Field, reduxForm} from 'redux-form'
-import renderTextField from "../common/renderTextField";
 import validate from "../common/validate";
-import renderOptionField from "../common/renderOptionField";
+import renderFileField from "../common/renderFileField";
 
 
 class RegisterUploadFileForm extends Component {
@@ -18,7 +17,7 @@ class RegisterUploadFileForm extends Component {
 
                             <Field
                                 name="selfieIdCardFile"
-                                component={renderTextField}
+                                component={renderFileField}
                                 type="file"
                                 label="ถ่ายเซลฟี่คู่กับบัตรประชาชน"
                                 required={true}
@@ -26,23 +25,23 @@ class RegisterUploadFileForm extends Component {
                             />
                             <Field
                                 name="salarySlipFile"
-                                component={renderTextField}
+                                component={renderFileField}
                                 type="file"
                                 label="ถ่ายสลิปเงินเดือน"
                                 required={true}
                                 help="ถ้าไม่มีเป็น หนังสือรับรองเงินเดือน แทน"
                             />
                             <Field
-                                name="statement4Moneth"
-                                component={renderTextField}
+                                name="statement4MonthFiles"
+                                component={renderFileField}
                                 type="file"
                                 label="ถ่าย Statement ย้อนหลัง 4 เดือน ของบัญชีธนาคารที่เป็นบัญชีเงินเดือน"
                                 required={true}
                                 help="หรือ ถ่ายสมุดบัญชีพร้อมหน้าที่มีชื่อและเลขบัญชี ย้อนหลัง 4 เดือน ถ้าถ่ายสมุดบัญชี สมุดต้องอัพประจำ"
                             />
                             <Field
-                                name="statement4Moneth"
-                                component={renderTextField}
+                                name="secondaryStatement4MonthFiles"
+                                component={renderFileField}
                                 type="file"
                                 label="ถ้าบัญชีเงินเดือนไม่ใช่บัญชีที่ใช้เป็นหลัก ถ่าย Statement ย้อนหลัง 4 เดือน ของบัญชีธนาคารที่ใช้เป็นบัญชีใช้จ่ายหลัก"
                                 required={true}
@@ -60,6 +59,16 @@ class RegisterUploadFileForm extends Component {
     };
 }
 
-RegisterUploadFileForm = reduxForm({form: 'general', destroyOnUnmount: false, validate})(RegisterUploadFileForm);
+RegisterUploadFileForm = reduxForm({
+    form: 'apply',
+    destroyOnUnmount: false,
+    forceUnregisterOnUnmount: true,
+    validate,
+    onSubmitFail: ((errors) => {
+        let arrayError = Object.keys(errors);
+        let target = document.querySelector(`input[name="${arrayError[0]}"]`);
+        target.scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+    })
+})(RegisterUploadFileForm);
 
 export default RegisterUploadFileForm
