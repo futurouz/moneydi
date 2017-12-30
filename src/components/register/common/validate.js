@@ -1,8 +1,6 @@
 const validate = values => {
     const errors = {};
 
-    // console.log('validate_values:', values);
-
     // // Account
     // if (!values.mobileNo) {
     //     errors.mobileNo = 'กรุณากรอกข้อมูล'

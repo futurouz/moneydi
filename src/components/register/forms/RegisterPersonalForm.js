@@ -17,6 +17,7 @@ class RegisterPersonalForm extends Component {
                     <div className="row">
                         <div className="col-md-4 offset-md-4 ">
                             {/* Progress Bar */}
+                            <div className="page">หน้า 2/3</div>
                             <div className="progress">
                                 <div
                                     className="progress-bar progress-bar-info personal_form"
@@ -24,7 +25,7 @@ class RegisterPersonalForm extends Component {
                                     aria-valuenow="66"
                                     aria-valuemin="0"
                                     aria-valuemax="100">
-                                    2/3 (66%)
+                                    66%
                                 </div>
                             </div>
 

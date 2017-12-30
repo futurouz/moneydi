@@ -14,14 +14,15 @@ class RegisterLoanForm extends Component {
                 <div className="creditForm">
                     <div className="row">
                         <div className="col-md-4 offset-md-4">
-                         <div className="progress"> 
+                            <div className="page">หน้า 3/3</div>
+                            <div className="progress">
                                 <div
                                     className="progress-bar progress-bar-info loan_form"
                                     role="progressbar"
                                     aria-valuenow="100"
                                     aria-valuemin="0"
                                     aria-valuemax="100">
-                                    3/3  (100%)
+                                    100%
                                 </div>
                             </div>
 

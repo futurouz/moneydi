@@ -6,13 +6,14 @@ import validate from "../common/validate";
 class RegisterAccountForm extends Component {
 
     render() {
-        const {handleSubmit} = this.props;
+        const {handleSubmit, disabled} = this.props;
         return (
             <Form onSubmit={handleSubmit}>
                 <div className="profileForm">
                     <div className="row">
                         <div className="col-md-4 offset-md-4">
                             {/* Progress Bar */}
+                            <div className="page">หน้า 1/3</div>
                             <div className="progress">
                                 <div
                                     className="progress-bar progress-bar-info account_progress"
@@ -20,9 +21,20 @@ class RegisterAccountForm extends Component {
                                     aria-valuenow="33"
                                     aria-valuemin="0"
                                     aria-valuemax="100">
-                                    1/3 (33%)
+                                    33%
                                 </div>
                             </div>
+
+                            <h2>ขั้นตอนการสมัคร</h2>
+                            <div>
+                                <ol>
+                                    <li>กรอกใบสมัคร ไม่มีค่าสมัคร ไม่ต้องใช้สินทรัพย์หรือคนค้ำ</li>
+                                    <li>รอการแจ้งผลทาง SMS ภายใน 24 ชั่วโมง</li>
+                                    <li>หากอนุมัติ มันนี่ดิจะโอนเงินเข้าบัญชีคุณ</li>
+                                    <li>มันนี่ดิจะแจ้งเบอร์บัญชีพร้อมเพย์ให้คุณโอนเงินและดอกเบี้ยบริจาค</li>
+                                </ol>
+                            </div>
+
 
                             <h2>โปรไฟล์</h2>
                             <Field
@@ -32,27 +44,31 @@ class RegisterAccountForm extends Component {
                                 label="โทรศัพท์มือถือ (username)"
                                 required={true}
                                 maxLength={10}
-                                help="ตัวเลข 10 ตัว เช่น 0971177937"/>
+                                help="ตัวเลข 10 ตัว เช่น 0971177937"
+                                disabled={disabled}/>
                             <Field
                                 name="firstName"
                                 component={renderTextField}
                                 type="text"
                                 label="ชื่อ"
-                                required={true}/>
+                                required={true}
+                                disabled={disabled}/>
                             <Field
                                 name="lastName"
                                 component={renderTextField}
                                 type="text"
                                 label="นามสกุล"
-                                required={true}/>
+                                required={true}
+                                disabled={disabled}/>
                             <Field
                                 name="password"
                                 component={renderTextField}
                                 type="text"
                                 label="รหัสผ่าน"
-                                required={true}/>
+                                required={true}
+                                disabled={disabled}/>
                             <div className="text-center">
-                                <button type="submit" className="btn btn-primary">ถัดไป</button>
+                                <button type="submit" disabled={disabled} className="btn btn-primary">ถัดไป</button>
                             </div>
                         </div>
                     </div>

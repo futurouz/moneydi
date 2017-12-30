@@ -8,6 +8,8 @@ import RegisterUploadFileForm from "./forms/RegisterUploadFileForm";
 import firebase from 'firebase';
 import connect from "react-redux/es/connect/connect";
 import getFormValues from "redux-form/es/getFormValues";
+import {reduxForm} from "redux-form";
+import {PulseLoader, RingLoader} from "react-spinners";
 
 class Register extends Component {
 
@@ -20,7 +22,8 @@ class Register extends Component {
         this.state = {
             page: 1,
             fbUser: null,
-            appKey: null
+            appKey: null,
+            loading: true
         }
     }
 
@@ -41,7 +44,11 @@ class Register extends Component {
                     console.log('User signed in');
                     this.state.fbUser = user;
                     const uid = this.state.fbUser.uid;
-                    this.getAppKey(uid)
+                    this.getAppKey(uid, (appKey) => {
+                        this.setState({
+                            loading: false
+                        });
+                    })
                 } else {
                     console.log('User signed out')
                 }
@@ -93,8 +100,12 @@ class Register extends Component {
                     const childKey = childSnapshot.key;
                     const childData = childSnapshot.val();
                     if(!childData.isApplied) {
-                        // TODO: Set user data
-
+                        for (const key in childData) {
+                            if (childData.hasOwnProperty(key)) {
+                                // update form value
+                                that.props.change(key, childData[key]);
+                            }
+                        }
                         that.state.appKey = childKey;
                     } else {
                         that.state.appKey = firebase.database().ref('users/' + uid + '/applications').push().key;
@@ -131,39 +142,57 @@ class Register extends Component {
     }
 
     render() {
-        const { page } = this.state;
+        const { page, loading } = this.state;
         return (
             <div>
                 <Navbar/>
+                {loading && (
+                <div className="spinner-container">
+                    <div className="spinner-item">
+                        <PulseLoader color={'#0588cf'}/>
+                    </div>
+                </div>
+                )}
                 {page === 1 && (
-                    <RegisterAccountForm onSubmit={this.nextPage} />
+                    <RegisterAccountForm
+                        onSubmit={this.nextPage}
+                        disabled={loading}
+                    />
                 )}
                 {page === 2 && (
                     <RegisterPersonalForm
                         previousPage={this.previousPage}
                         onSubmit={this.nextPage}
+                        disabled={loading}
                     />
                 )}
                 {page === 3 && (
                     <RegisterLoanForm
                         previousPage={this.previousPage}
                         onSubmit={this.submitForm}
+                        disabled={loading}
                     />
                 )}
                 {page === 4 && (
                     <RegisterThankForm
                         onSubmit={this.nextPage}
+                        disabled={loading}
                     />
                 )}
                 {page === 5 && (
                     <RegisterUploadFileForm
                         onSubmit={this.uploadFile}
+                        disabled={loading}
                     />
                 )}
             </div>
         )
     }
 }
+
+Register = reduxForm({
+    form: 'apply'
+})(Register);
 
 // read user form and map to state
 Register = connect(
