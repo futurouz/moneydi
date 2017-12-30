@@ -1,16 +1,122 @@
 import React, {Component} from 'react';
-import {Form, Field, reduxForm} from 'redux-form'
+import {Form, Field, reduxForm, getFormValues} from 'redux-form'
 import renderTextField from "../common/renderTextField";
 import validate from "../common/validate";
 import renderOptionField from "../common/renderOptionField";
-
+import {connect} from "react-redux";
+import firebase from 'firebase';
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 
 class RegisterLoanForm extends Component {
 
+    constructor(props) {
+        super(props);
+        this.preSubmit = this.preSubmit.bind(this);
+        this.submitForm = this.props.submitForm;
+        this.onVerificationCodeResult = this.onVerificationCodeResult.bind(this);
+        this.verificationCode = null;
+        this.errorMessage = null;
+        this.state = {
+            isOpenVerifyModal: false,
+            isOpenErrorModal: false,
+            confirmationResult: null
+        }
+    }
+
+    componentDidMount() {
+        firebase.auth().languageCode = 'th';
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('btn-apply', {
+            'size': 'invisible',
+            'callback': function(response) {
+                // reCAPTCHA solved, allow signInWithPhoneNumber.
+                console.log(response);
+                // this.signInWithPhoneNumber();
+            }
+        });
+    }
+
+    preSubmit() {
+        const self = this;
+        const phoneNumber = '+66' + this.props.user.mobileNo.substr(1);
+        const appVerifier = window.recaptchaVerifier;
+        firebase.auth().currentUser.linkWithPhoneNumber(phoneNumber, appVerifier)
+            .then(function (confirmationResult) {
+                self.state.confirmationResult = confirmationResult;
+                self.setState({ isOpenVerifyModal: true });
+            })
+            .catch(function (error) {
+                self.showError(error.message);
+            });
+    }
+
+    onVerificationCodeResult() {
+        if(!this.verificationCode) return;
+
+        const self = this;
+        this.setState({ isOpenVerifyModal: false });
+        const code = this.verificationCode;
+        this.state.confirmationResult.confirm(code).then(function (result) {
+            const data = {
+                success: true
+            };
+            self.props.onSubmit(data);
+        }).catch(function (error) {
+            console.log(error);
+            if(error.code === 'auth/credential-already-in-use') {
+                const data = {
+                    success: false,
+                    error: error
+                };
+                self.props.onSubmit(data);
+                return;
+            }
+            self.showError(error.message);
+        });
+    }
+
+    showError(message) {
+        this.errorMessage = message;
+        this.setState({ isOpenErrorModal: true });
+    }
+
     render() {
-        const {handleSubmit, previousPage} = this.props;
+        const {isOpenVerifyModal, isOpenErrorModal} = this.state;
+        const {previousPage, handleSubmit} = this.props;
+        const onCancelVerify = () => this.setState({ isOpenVerifyModal: false });
+        const onCancelError = () => this.setState({ isOpenErrorModal: false });
         return (
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit(this.preSubmit)}>
+                <Modal isOpen={isOpenVerifyModal} className=''>
+                    <ModalHeader toggle={onCancelVerify}>กรอกรหัสยืนยัน</ModalHeader>
+                    <ModalBody>
+                        <p>กรุณากรอกรหัสยืนยัน 6 หลัก ที่ได้รับจาก SMS</p>
+                        <div className="form-group">
+                            <input
+                                className="form-control"
+                                autoFocus
+                                onChange={evt => this.verificationCode = evt.target.value}
+                            />
+                        </div>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.onVerificationCodeResult}>ยืนยัน</Button>{' '}
+                        <Button color="secondary" onClick={onCancelVerify}>ยกเลิก</Button>
+                    </ModalFooter>
+                </Modal>
+
+                <Modal isOpen={isOpenErrorModal} className=''>
+                    <ModalHeader toggle={onCancelError}>
+                        <i className="fa fa-exclamation-circle" aria-hidden="true"/>&nbsp;
+                        พบบางอย่างผิดพลาด
+                    </ModalHeader>
+                    <ModalBody>
+                        {this.errorMessage}
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="secondary" onClick={onCancelError}>ปิด</Button>
+                    </ModalFooter>
+                </Modal>
+
                 <div className="creditForm">
                     <div className="row">
                         <div className="col-md-4 offset-md-4">
@@ -150,9 +256,12 @@ class RegisterLoanForm extends Component {
                                     }
                                 ]}/>
 
-                            <div className="text-center">
+                            <div className="text-center button-wrapper">
                                 <button type="button" className="btn btn-secondary" onClick={previousPage}>ก่อนหน้า</button>
-                                <button type="submit" className="btn btn-primary ml-2">ส่งใบสมัคร</button>
+                                <button
+                                    type="submit" id="btn-apply" className="btn btn-primary ml-2">
+                                    ส่งใบสมัคร
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -167,10 +276,20 @@ RegisterLoanForm = reduxForm({
     destroyOnUnmount: false,
     validate,
     onSubmitFail: ((errors) => {
+        if(!errors) return;
         let arrayError = Object.keys(errors);
         let target = document.querySelector(`input[name="${arrayError[0]}"]`);
         target.scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
     })
 })(RegisterLoanForm);
+
+RegisterLoanForm = connect(
+    state => {
+        const user = getFormValues("apply")(state) || {};
+        return {
+            user: user
+        }
+    }
+)(RegisterLoanForm);
 
 export default RegisterLoanForm
