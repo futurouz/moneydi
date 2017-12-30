@@ -28,18 +28,20 @@ class RegisterLoanForm extends Component {
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('btn-apply', {
             'size': 'invisible',
             'callback': function(response) {
-                // reCAPTCHA solved, allow signInWithPhoneNumber.
                 console.log(response);
-                // this.signInWithPhoneNumber();
             }
         });
     }
 
     preSubmit() {
         const self = this;
+
+        // save data to anonymous before migrate to auth user
+        self.props.onSubmit();
+
         const phoneNumber = '+66' + this.props.user.mobileNo.substr(1);
         const appVerifier = window.recaptchaVerifier;
-        firebase.auth().currentUser.linkWithPhoneNumber(phoneNumber, appVerifier)
+        firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
             .then(function (confirmationResult) {
                 self.state.confirmationResult = confirmationResult;
                 self.setState({ isOpenVerifyModal: true });
@@ -50,26 +52,19 @@ class RegisterLoanForm extends Component {
     }
 
     onVerificationCodeResult() {
-        if(!this.verificationCode) return;
+        // validate verification code
+        if(!this.verificationCode) {
+            this.showError("กรุณากรอกรหัสยืนยัน");
+            return;
+        }
 
         const self = this;
         this.setState({ isOpenVerifyModal: false });
         const code = this.verificationCode;
         this.state.confirmationResult.confirm(code).then(function (result) {
-            const data = {
-                success: true
-            };
-            self.props.onSubmit(data);
+            result.user.credential = firebase.auth.PhoneAuthProvider.credential(self.state.confirmationResult.verificationId, code);
+            self.props.onSubmit(result.user);
         }).catch(function (error) {
-            console.log(error);
-            if(error.code === 'auth/credential-already-in-use') {
-                const data = {
-                    success: false,
-                    error: error
-                };
-                self.props.onSubmit(data);
-                return;
-            }
             self.showError(error.message);
         });
     }
