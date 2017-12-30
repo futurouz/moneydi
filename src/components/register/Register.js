@@ -137,6 +137,8 @@ class Register extends Component {
     }
 
     uploadFile() {
+        const storageRef = firebase.storage().ref('images/' + 'something');
+        storageRef.put('FILE')
         alert('อัพโหลดหลักฐานเรียบร้อยแล้ว ขอบคุณที่ใช้บริการมันนี่ดิค่ะ');
         this.props.history.push('/');
     }

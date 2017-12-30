@@ -3,8 +3,16 @@ import {Form, Field, reduxForm} from 'redux-form'
 import validate from "../common/validate";
 import renderFileField from "../common/renderFileField";
 
-
 class RegisterUploadFileForm extends Component {
+   constructor(props) {
+        super(props);
+        this.state = { file: null };
+        this.handleChange = this.handleChange.bind(this);
+    }
+  handleChange(event) {
+        const file = event.target.files[0];
+        this.setState({ file });
+    }
 
     render() {
         const {handleSubmit} = this.props;
@@ -22,31 +30,28 @@ class RegisterUploadFileForm extends Component {
                                 label="ถ่ายเซลฟี่คู่กับบัตรประชาชน"
                                 required={true}
                                 help="ให้เห็นชื่อและใบหน้าในบัตรประชาชนชัดเจน"
-                            />
+                                onChange={this.handleChange}/>
                             <Field
                                 name="salarySlipFile"
                                 component={renderFileField}
                                 type="file"
                                 label="ถ่ายสลิปเงินเดือน"
                                 required={true}
-                                help="ถ้าไม่มีเป็น หนังสือรับรองเงินเดือน แทน"
-                            />
+                                help="ถ้าไม่มีเป็น หนังสือรับรองเงินเดือน แทน"/>
                             <Field
                                 name="statement4MonthFiles"
                                 component={renderFileField}
                                 type="file"
                                 label="ถ่าย Statement ย้อนหลัง 4 เดือน ของบัญชีธนาคารที่เป็นบัญชีเงินเดือน"
                                 required={true}
-                                help="หรือ ถ่ายสมุดบัญชีพร้อมหน้าที่มีชื่อและเลขบัญชี ย้อนหลัง 4 เดือน ถ้าถ่ายสมุดบัญชี สมุดต้องอัพประจำ"
-                            />
+                                help="หรือ ถ่ายสมุดบัญชีพร้อมหน้าที่มีชื่อและเลขบัญชี ย้อนหลัง 4 เดือน ถ้าถ่ายสมุดบัญชี สมุดต้องอัพประจำ"/>
                             <Field
                                 name="secondaryStatement4MonthFiles"
                                 component={renderFileField}
                                 type="file"
                                 label="ถ้าบัญชีเงินเดือนไม่ใช่บัญชีที่ใช้เป็นหลัก ถ่าย Statement ย้อนหลัง 4 เดือน ของบัญชีธนาคารที่ใช้เป็นบัญชีใช้จ่ายหลัก"
                                 required={true}
-                                help="หรือ ถ่ายสมุดบัญชีพร้อมหน้าที่มีชื่อและเลขบัญชี ย้อนหลัง 4 เดือน ถ้าถ่ายสมุดบัญชี สมุดต้องอัพประจำ"
-                            />
+                                help="หรือ ถ่ายสมุดบัญชีพร้อมหน้าที่มีชื่อและเลขบัญชี ย้อนหลัง 4 เดือน ถ้าถ่ายสมุดบัญชี สมุดต้องอัพประจำ"/>
 
                             <div className="text-center">
                                 <button type="submit" className="btn btn-primary ml-2">อัพโหลดหลักฐาน</button>
