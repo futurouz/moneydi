@@ -9,7 +9,7 @@ import firebase from 'firebase';
 import connect from "react-redux/es/connect/connect";
 import getFormValues from "redux-form/es/getFormValues";
 import {reduxForm} from "redux-form";
-import {PulseLoader, RingLoader} from "react-spinners";
+import {PulseLoader} from "react-spinners";
 
 class Register extends Component {
 
@@ -57,12 +57,6 @@ class Register extends Component {
 
     saveUserData(isApplied = false) {
         const { user: userData } = this.props;
-        if(!userData.hasOwnProperty('isApply')){
-            userData.isApplied = false;
-        }
-        if(isApplied && !userData.isApplied) {
-            userData.isApplied = true;
-        }
 
         // reject to save user data if already applied
         if(userData.isApplied === true) {
@@ -72,6 +66,13 @@ class Register extends Component {
         // user is not logged in
         if(this.state.fbUser === null) {
             return;
+        }
+
+        if(!userData.hasOwnProperty('isApplied')){
+            userData.isApplied = false;
+        }
+        if(isApplied && !userData.isApplied) {
+            userData.isApplied = true;
         }
 
         // save user to firebase
@@ -131,7 +132,12 @@ class Register extends Component {
         this.setState({ page: this.state.page - 1 });
     }
 
-    submitForm() {
+    submitForm(result) {
+        if(!result.success && result.error.code === 'auth/credential-already-in-use') {
+            // TODO: merge user data
+
+            return;
+        }
         this.saveUserData(true);
         this.nextPage();
     }
@@ -175,7 +181,7 @@ class Register extends Component {
                 )}
                 {page === 4 && (
                     <RegisterThankForm
-                        onSubmit={this.nextPage}
+                        onSubmit={this.submitForm}
                         disabled={loading}
                     />
                 )}

@@ -4,7 +4,9 @@ const renderTextField = ({ input, label, type, maxLength, help, required, disabl
     const isNumberInput = type === "number";
     return (
         <div className="form-group">
-            <label className="title">{label} {required && '*'}</label>
+            {label && (
+                <label className="title">{label} {required && '*'}</label>
+            )}
             <div>
                 <input {...input} type={type} maxLength={maxLength} disabled={disabled} min={isNumberInput ? "0" : "false"} className={ `form-control ${touched && error && 'is-invalid'}` } />
                 {touched && error && <div className="invalid-feedback">{error}</div>}
