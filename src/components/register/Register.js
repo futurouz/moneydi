@@ -41,7 +41,7 @@ class Register extends Component {
             .auth()
             .onAuthStateChanged((user) => {
                 if (user) {
-                    console.log('User signed in');
+                    console.log('User signed in', user);
                     this.state.fbUser = user;
                     const uid = this.state.fbUser.uid;
                     this.getAppKey(uid, (appKey) => {
@@ -55,7 +55,7 @@ class Register extends Component {
             });
     }
 
-    saveUserData(isApplied = false) {
+    saveUserData(isApplied = false, oldUser = null) {
         const { user: userData } = this.props;
 
         // reject to save user data if already applied
@@ -78,9 +78,10 @@ class Register extends Component {
         // save user to firebase
         const uid = this.state.fbUser.uid;
         this.getAppKey(uid, (appKey) => {
-            let updates = {};
-            updates['users/' + uid + '/applications/' + appKey] = userData;
-            firebase.database().ref().update(updates);
+            if(oldUser !== null) {
+                userData.fromAnonymousUid = oldUser.uid;
+            }
+            firebase.database().ref('users/' + uid + '/applications/' + appKey).update(userData);
         })
     }
 
@@ -132,14 +133,29 @@ class Register extends Component {
         this.setState({ page: this.state.page - 1 });
     }
 
-    submitForm(result) {
-        if(!result.success && result.error.code === 'auth/credential-already-in-use') {
-            // TODO: merge user data
-
+    submitForm(user = null) {
+        if(!user) {
+            this.saveUserData();
             return;
         }
-        this.saveUserData(true);
-        this.nextPage();
+
+        const oldUser = this.state.fbUser;
+        // remove old user data
+        if(oldUser.uid !== user.uid) {
+            this.deleteAnonymousUser(oldUser, user, () => {
+                this.state.fbUser = user;
+                this.state.appKey = null;
+                this.saveUserData(true, oldUser);
+                this.nextPage();
+            });
+        } else {
+            this.saveUserData(true);
+        }
+    }
+
+    deleteAnonymousUser(oldUser, newUser, cb) {
+        // TODO: find a way to delete anonymous data
+        cb();
     }
 
     uploadFile() {
