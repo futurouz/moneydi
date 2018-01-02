@@ -37,7 +37,8 @@ class RegisterPersonalForm extends Component {
                                 component={renderTextField}
                                 type="text"
                                 label="เลขที่บัตรประชาชน"
-                                required={true}/>
+                                required={true}
+                                autoFocus={true}/>
                             <Field
                                 name="age"
                                 component={renderTextField}
@@ -692,6 +693,7 @@ RegisterPersonalForm = reduxForm({
     forceUnregisterOnUnmount: true,
     validate,
     onSubmitFail: ((errors) => {
+        if(!errors) return;
         let arrayError = Object.keys(errors);
         let target = document.querySelector(`input[name="${arrayError[0]}"]`);
         target.scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});

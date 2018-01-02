@@ -37,7 +37,8 @@ class RegisterThankForm extends Component {
                                     component={renderTextField}
                                     type="number"
                                     label="จำนวนทิป (บาท)"
-                                    help="แนะนำ 4-9% ของยอดกู้ หรือ xxx - xxx บาท (xxx = 4% x ยอดขอกู้)"/>
+                                    help="แนะนำ 4-9% ของยอดกู้ หรือ xxx - xxx บาท (xxx = 4% x ยอดขอกู้)"
+                                    autoFocus={true}/>
                             </div>
                             <hr/>
                             <p className="emphasize">

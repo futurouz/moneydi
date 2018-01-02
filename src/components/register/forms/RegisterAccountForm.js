@@ -2,8 +2,19 @@ import React, {Component} from 'react';
 import {Form, Field, reduxForm} from 'redux-form'
 import renderTextField from "../common/renderTextField";
 import validate from "../common/validate";
+import firebase from 'firebase';
 
 class RegisterAccountForm extends Component {
+
+    componentDidMount() {
+        firebase.auth().languageCode = 'th';
+        window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('btn-apply', {
+            'size': 'invisible',
+            'callback': function(response) {
+                console.log(response);
+            }
+        });
+    }
 
     render() {
         const {handleSubmit, disabled} = this.props;
@@ -45,7 +56,8 @@ class RegisterAccountForm extends Component {
                                 required={true}
                                 maxLength={10}
                                 help="ตัวเลข 10 ตัว เช่น 0971177937"
-                                disabled={disabled}/>
+                                disabled={disabled}
+                                autoFocus={true}/>
                             <Field
                                 name="firstName"
                                 component={renderTextField}
@@ -60,15 +72,8 @@ class RegisterAccountForm extends Component {
                                 label="นามสกุล"
                                 required={true}
                                 disabled={disabled}/>
-                            <Field
-                                name="password"
-                                component={renderTextField}
-                                type="text"
-                                label="รหัสผ่าน"
-                                required={true}
-                                disabled={disabled}/>
-                            <div className="text-center">
-                                <button type="submit" disabled={disabled} className="btn btn-primary">ถัดไป</button>
+                            <div className="text-center button-wrapper">
+                                <button type="submit" id="btn-apply" disabled={disabled} className="btn btn-primary">ถัดไป</button>
                             </div>
                         </div>
                     </div>
@@ -84,6 +89,7 @@ RegisterAccountForm = reduxForm({
     forceUnregisterOnUnmount: true,
     validate,
     onSubmitFail: ((errors) => {
+        if(!errors) return;
         let arrayError = Object.keys(errors);
         let target = document.querySelector(`input[name="${arrayError[0]}"]`);
         target.scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});

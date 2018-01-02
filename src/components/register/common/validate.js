@@ -11,9 +11,6 @@ const validate = values => {
     // if (!values.lastName) {
     //     errors.lastName = 'กรุณากรอกข้อมูล'
     // }
-    // if (!values.password) {
-    //     errors.password = 'กรุณากรอกข้อมูล'
-    // }
     //
     // // Personal
     // if (!values.citizenId) {
