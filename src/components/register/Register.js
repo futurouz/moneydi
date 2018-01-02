@@ -209,7 +209,7 @@ class Register extends Component {
     uploadFile() {
         this.saveUserData(true);
         alert('อัพโหลดหลักฐานเรียบร้อยแล้ว ขอบคุณที่ใช้บริการมันนี่ดิค่ะ');
-        // this.props.history.push('/');
+        this.props.history.push('/');
     }
 
     render() {
