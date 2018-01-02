@@ -71,8 +71,10 @@ class renderMultiFileField extends Component {
             }, function () {
                 // Upload completed successfully, now we can get the download URL
                 const downloadUrl = storageRef.snapshot.downloadURL;
+                const storagePath = storageRef.snapshot.metadata.fullPath;
                 that.state.files[index].isUploaded = true;
                 that.state.files[index].downloadUrl = downloadUrl;
+                that.state.files[index].storagePath = storagePath;
 
                 let transformedValues = that.state.files;
                 transformedValues = transformedValues
@@ -86,7 +88,8 @@ class renderMultiFileField extends Component {
                             name: file.raw.name,
                             size: file.raw.size,
                             type: file.raw.type,
-                            downloadUrl: file.downloadUrl
+                            downloadUrl: file.downloadUrl,
+                            storagePath: file.storagePath
                         };
                     });
                 that.props.input.onChange(transformedValues);
