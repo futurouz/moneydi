@@ -210,7 +210,6 @@
     padding: 10px;
 }
 
-
 /* profile form */
 
 .profileForm {
@@ -229,7 +228,6 @@
 .profileForm button {
     margin-top: 10px;
 }
-
 
 /* info form */
 
@@ -259,7 +257,6 @@
     margin-bottom: 20px;
 }
 
-
 /* credit form */
 
 .creditForm {
@@ -279,7 +276,6 @@
     margin-top: 10px;
     margin-bottom: 20px;
 }
-
 
 /* agreement */
 
@@ -313,7 +309,6 @@
     border-radius: 5px;
 }
 
-
 /* thank you */
 
 .thankyou {
@@ -334,7 +329,6 @@
     margin-bottom: 20px;
 }
 
-
 /* upload file */
 
 .uploadFileForm {
@@ -354,7 +348,6 @@
     margin-top: 10px;
     margin-bottom: 20px;
 }
-
 
 /* other */
 
@@ -434,14 +427,19 @@
     position: absolute;
 }
 
-.form-control.dropzone-container {
-    border: 1px dashed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .form-control.dropzone-container p {
     margin: 0px;
     padding: 5px;
+}
+
+.form-control.dropzone-container ul {
+    padding: 0px;
+}
+
+.upload-list {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 100%;
 }

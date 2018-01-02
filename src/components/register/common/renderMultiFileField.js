@@ -7,7 +7,8 @@ class renderMultiFileField extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            files: []
+            files: [],
+            progress: 0
         };
         this.uploadFile = this.uploadFile.bind(this);
     }
@@ -42,7 +43,8 @@ class renderMultiFileField extends Component {
                 // Get task progress, including the number of bytes uploaded and the total
                 // number of bytes to be uploaded
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
+                const roundingProgress = progress.toFixed(2);
+                this.setState({progress: roundingProgress})
                 switch (snapshot.state) {
                     case firebase.storage.TaskState.PAUSED: // or 'paused'
                         console.log('Upload is paused');
@@ -52,7 +54,7 @@ class renderMultiFileField extends Component {
                         break;
                     default:
                 }
-            }, function (error) {
+            }.bind(this), function (error) {
                 console.log(error);
                 // A full list of error codes is available at
                 // https://firebase.google.com/docs/storage/web/handle-errors
@@ -107,16 +109,29 @@ class renderMultiFileField extends Component {
                         onDrop={this.onDrop.bind(this)}
                         className={`form-control ${touched && error && 'is-invalid'} dropzone-container `}>
                         <p>กดหรือวางไฟล์ เพื่ออัพโหลดเอกสาร</p>
-                        {this.state.files.length > 0 && <ul>
-                            {this
-                                .state
-                                .files
-                                .map(f => <li key={f.raw.name}>{f.raw.name}
-                                    - {f.raw.size}
-                                    bytes</li>)
-}
-                        </ul>
-}
+                        
+                        {this.state.files.length > 0 &&
+                        <div className="row">
+                            <div className="col-md-12 col-xs-12">
+                                <ul>
+                                {
+                                    this.state.files.map(f => 
+                                        <div key={f.raw.name}>
+                                            <li className="upload-list" >
+                                                {f.raw.name} - {f.raw.size} bytes
+                                            </li>
+                                            <div className="progress">
+                                                <div className="progress-bar" role="progressbar" aria-valuenow="70"
+                                                    aria-valuemin="0" aria-valuemax="100" style={{width: `${this.state.progress}%`}}>
+                                                        {this.state.progress}%
+                                                </div>
+                                            </div>
+                                        </div>)
+                                }
+                                </ul>    
+                            </div>
+                        </div>
+                        }
                     </Dropzone>
                     {touched && error && <div className="invalid-feedback">{error}</div>}
                     {help && <small id="emailHelp" className="form-text text-muted">{help}</small>}
