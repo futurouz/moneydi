@@ -113,6 +113,7 @@ class Register extends Component {
             recentUserApp.once('value', function(snapshot) {
                 if(snapshot.numChildren() === 0) {
                     that.state.appKey = firebase.database().ref('users/' + uid + '/applications').push().key;
+                    that.props.change('appKey', that.state.appKey);
                     if(cb) {
                         cb(that.state.appKey);
                     }
@@ -136,12 +137,14 @@ class Register extends Component {
                     } else {
                         that.state.appKey = firebase.database().ref('users/' + uid + '/applications').push().key;
                     }
+                    that.props.change('appKey', that.state.appKey);
                     if(cb) {
                         cb(that.state.appKey);
                     }
                 });
             });
         } else {
+            this.props.change('appKey',this.state.appKey);
             if(cb) {
                 cb(this.state.appKey);
             }
