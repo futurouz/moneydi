@@ -8,27 +8,40 @@ class renderMultiFileField extends Component {
         super(props);
         this.state = {
             files: [],
-            progress: []
+            progresses: []
         };
         this.uploadFile = this.uploadFile.bind(this);
+        this.onDrop = this.onDrop.bind(this);
+        this.deleteFile = this.deleteFile.bind(this);
     }
 
-    onDrop(files) {
+    onDrop(files, rejectedFiles) {
+        if(rejectedFiles.length > 0 && this.props.onError) {
+            this.props.onError("กรุณาเลือกประเภทหรือขนาดของไฟล์ให้ถูกต้อง");
+            return;
+        }
+
+        const stateFiles = this.state.files;
         files.map((file) => {
-            this.state.files.push({
+            stateFiles.push({
                 raw: file,
                 isUploaded: false
             });
+            return file;
         });
-        this.state.files.map((file, index) => {
-            if(!this.state.progress[index]) {
-                this.state.progress[index] = 0;
+
+        const stateProgresses = this.state.progresses;
+        stateFiles.map((file, index) => {
+            if(!stateProgresses[index]) {
+                stateProgresses[index] = 0;
             }
             this.uploadFile(file, index);
+            return file;
         });
+
         this.setState({
-            files: this.state.files,
-            progress: this.state.progress
+            files: stateFiles,
+            progresses: stateProgresses
         });
     }
     
@@ -38,9 +51,7 @@ class renderMultiFileField extends Component {
         }
 
         const that = this;
-        const storageRef = firebase
-            .storage()
-            .ref()
+        const storageRef = firebase.storage().ref()
             .child(this.props.storagePath + `${Date.now()}-${index}-${file.raw.name}`  )
             .put(file.raw);
 
@@ -49,11 +60,11 @@ class renderMultiFileField extends Component {
                 // Get task progress, including the number of bytes uploaded and the total
                 // number of bytes to be uploaded
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                const roundingProgress = progress.toFixed(2);
-                
-                this.state.progress[index] = roundingProgress;
+
+                const progresses = this.state.progresses;
+                progresses[index] = progress.toFixed(2);
                 this.setState({
-                    progress: this.state.progress
+                    progresses: progresses
                 });
 
                 switch (snapshot.state) {
@@ -85,9 +96,11 @@ class renderMultiFileField extends Component {
                 // Upload completed successfully, now we can get the download URL
                 const downloadUrl = storageRef.snapshot.downloadURL;
                 const storagePath = storageRef.snapshot.metadata.fullPath;
-                that.state.files[index].isUploaded = true;
-                that.state.files[index].downloadUrl = downloadUrl;
-                that.state.files[index].storagePath = storagePath;
+                const stateFiles = that.state.files;
+                stateFiles[index].isUploaded = true;
+                stateFiles[index].downloadUrl = downloadUrl;
+                stateFiles[index].storagePath = storagePath;
+                that.setState({files: stateFiles});
 
                 let transformedValues = that.state.files;
                 transformedValues = transformedValues
@@ -109,42 +122,71 @@ class renderMultiFileField extends Component {
             });
     }
 
+    deleteFile(index) {
+        const self = this;
+        const stateFiles = self.state.files;
+        const stateProgresses = self.state.progresses;
+        const file = stateFiles[index];
+        if(!window.confirm(`คุณต้องการลบไฟล์ ${file.raw.name} หรือไม่`)) {
+            return;
+        }
+
+        const delRef = firebase.storage().ref().child(file.storagePath);
+        delRef.delete().then(function() {
+            console.log("delete file success");
+        }).catch(function(error) {
+            console.log(error);
+        });
+
+        stateFiles.splice(index, 1);
+        stateProgresses.splice(index, 1);
+        self.setState({
+            files: stateFiles,
+            progresses: stateProgresses
+        });
+    }
+
     render() {
-        const { input, label, required, help, meta: {touched, error}} = this.props;
+        const { input, label, required, help, meta: {touched, error}, storagePath, ...props} = this.props;
         return (
             <div className="form-group">
                 <label className="title">{label} {required && '*'}</label>
                 <div>
-                    <Dropzone
-                        name={input.name}
-                        onDrop={this.onDrop.bind(this)}
-                        className={`form-control ${touched && error && 'is-invalid'} dropzone-container `}>
-                        <p>กดหรือวางไฟล์ เพื่ออัพโหลดเอกสาร</p>
-                        
-                        {this.state.files.length > 0 &&
-                        <div className="row">
+                    {this.state.files.length > 0 &&
+                        <div className="row mb-2">
                             <div className="col-md-12 col-xs-12">
-                                <ul>
-                                {
-                                    this.state.files.map((f,i) => 
-                                        <div key={f.raw.name}>
-                                            <li className="upload-list" >
-                                               {i+1}. {f.raw.name}
-                                            </li>
-                                            { this.state.progress[i] < 100 &&
-                                            <div className="progress">
-                                                <div className="progress-bar" role="progressbar" aria-valuenow="70"
-                                                    aria-valuemin="0" aria-valuemax="100" style={{width: `${this.state.progress[i]}%`}}>
-                                                        {this.state.progress[i]}%
-                                                </div>
+                                <ul className="list-group">
+                                    { this.state.files.map((file, index) =>
+                                        <li className="list-group-item list-group-item-action justify-content-between" key={index}>
+                                            <div className="upload-list" >
+                                                {index+1}. {file.raw.name}
+                                                <button type="button" className="close float-xl-right" aria-label="Close" onClick={() => {this.deleteFile(index)}}>
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                             </div>
+                                            {this.state.progresses[index] < 100 &&
+                                                <div className="progress">
+                                                    <div className="progress-bar" role="progressbar" aria-valuenow="70"
+                                                         aria-valuemin="0" aria-valuemax="100" style={{width: `${this.state.progresses[index]}%`}}>
+                                                        {this.state.progresses[index]}%
+                                                    </div>
+                                                </div>
                                             }
-                                        </div>)
-                                }
-                                </ul>    
+                                        </li>
+                                    )}
+                                </ul>
                             </div>
                         </div>
-                        }
+                    }
+                    <Dropzone
+                        {...props}
+                        name={input.name}
+                        acceptClassName="dropzone-accept"
+                        rejectClassName="dropzone-reject"
+                        activeClassName="dropzone-active"
+                        onDrop={this.onDrop}
+                        className={`form-control ${touched && error && 'is-invalid'} dropzone-container `}>
+                        <p>กดหรือวางไฟล์ เพื่ออัพโหลดเอกสาร</p>
                     </Dropzone>
                     {touched && error && <div className="invalid-feedback">{error}</div>}
                     {help && <small id="emailHelp" className="form-text text-muted">{help}</small>}

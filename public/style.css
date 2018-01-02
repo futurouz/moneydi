@@ -344,7 +344,7 @@
     border-radius: 5px;
 }
 
-.uploadFileForm button {
+.uploadFileForm .action button {
     margin-top: 10px;
     margin-bottom: 20px;
 }
@@ -429,6 +429,11 @@
 
 .form-control.dropzone-container {
     border: 1px dashed;
+    cursor: pointer;
+}
+
+.form-control.dropzone-container.dropzone-active {
+    background-color: #0588cf38;
 }
 
 .form-control.dropzone-container p {

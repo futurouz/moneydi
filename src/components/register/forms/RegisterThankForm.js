@@ -7,7 +7,7 @@ import validate from "../common/validate";
 class RegisterThankForm extends Component {
 
     render() {
-        const {handleSubmit, previousPage} = this.props;
+        const {handleSubmit} = this.props;
         return (
             <Form onSubmit={handleSubmit}>
                 <div className="thankyou">

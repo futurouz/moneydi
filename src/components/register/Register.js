@@ -24,9 +24,7 @@ class Register extends Component {
         this.onVerificationCodeResult = this.onVerificationCodeResult.bind(this);
         this.showLoading = this.showLoading.bind(this);
         this.openVerifyModal = this.openVerifyModal.bind(this);
-
-        this.verificationCode = null;
-        this.errorMessage = null;
+        this.showError = this.showError.bind(this);
 
         this.state = {
             page: 1,
@@ -35,7 +33,9 @@ class Register extends Component {
             loading: false,
             isOpenVerifyModal: false,
             isOpenErrorModal: false,
-            confirmationResult: null
+            confirmationResult: null,
+            errorMessage: null,
+            verificationCode: null
         }
     }
 
@@ -57,8 +57,7 @@ class Register extends Component {
 
 
     showError(message) {
-        this.errorMessage = message;
-        this.setState({ isOpenErrorModal: true });
+        this.setState({ isOpenErrorModal: true, errorMessage: message });
     }
 
     showLoading(isShow = true) {
@@ -177,7 +176,7 @@ class Register extends Component {
 
     onVerificationCodeResult() {
         // validate verification code
-        if(!this.verificationCode) {
+        if(!this.state.verificationCode) {
             this.showError("กรุณากรอกรหัสยืนยัน");
             return;
         }
@@ -185,7 +184,7 @@ class Register extends Component {
         const self = this;
         this.openVerifyModal(false);
         this.showLoading();
-        const code = this.verificationCode;
+        const code = this.state.verificationCode;
         this.state.confirmationResult.confirm(code).then(function (result) {
             console.log('User signed in', result.user);
             self.state.fbUser = result.user;
@@ -235,7 +234,7 @@ class Register extends Component {
                             <input
                                 className="form-control"
                                 autoFocus
-                                onChange={evt => this.verificationCode = evt.target.value}
+                                onChange={evt => this.setState({verificationCode: evt.target.value})}
                             />
                         </div>
                     </ModalBody>
@@ -251,7 +250,7 @@ class Register extends Component {
                         พบบางอย่างผิดพลาด
                     </ModalHeader>
                     <ModalBody>
-                        {this.errorMessage}
+                        {this.state.errorMessage}
                     </ModalBody>
                     <ModalFooter>
                         <Button color="secondary" onClick={onCancelError}>ปิด</Button>
@@ -288,6 +287,7 @@ class Register extends Component {
                     <RegisterUploadFileForm
                         onSubmit={this.uploadFile}
                         disabled={loading}
+                        onError={this.showError}
                     />
                 )}
             </div>

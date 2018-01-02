@@ -24,6 +24,7 @@ class RegisterUploadFileForm extends Component {
             }
         };
         this.preSubmit = this.preSubmit.bind(this);
+        this.onError = this.onError.bind(this);
     }
 
     componentDidMount() {
@@ -58,6 +59,10 @@ class RegisterUploadFileForm extends Component {
         this.props.onSubmit();
     }
 
+    onError(message) {
+        this.props.onError(message);
+    }
+
     render() {
         const {handleSubmit} = this.props;
         return (
@@ -71,30 +76,42 @@ class RegisterUploadFileForm extends Component {
                                 component={renderMultiFileField}
                                 label="ถ่ายเซลฟี่คู่กับบัตรประชาชน"
                                 required={true}
-                                help="ให้เห็นชื่อและใบหน้าในบัตรประชาชนชัดเจน"
+                                accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"
+                                maxSize={3 * 1024 * 1024}
+                                help="ให้เห็นชื่อและใบหน้าในบัตรประชาชนชัดเจน (รองรับนามสกุลไฟล์ .jpg, .png, .pdf, .doc, .docx ขนาดไม่เกิน 3 MB)"
+                                onError={this.onError}
                                 storagePath={this.state.selfieIdCardFiles.storagePath}/>
                             <Field
                                 name="salarySlipFiles"
                                 component={renderMultiFileField}
                                 label="ถ่ายสลิปเงินเดือน"
                                 required={true}
-                                help="ถ้าไม่มีเป็น หนังสือรับรองเงินเดือน แทน"
+                                accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"
+                                maxSize={3 * 1024 * 1024}
+                                help="ถ้าไม่มีเป็น หนังสือรับรองเงินเดือนแทน (รองรับนามสกุลไฟล์ .jpg, .png, .pdf, .doc, .docx ขนาดไม่เกิน 3 MB)"
+                                onError={this.onError}
                                 storagePath={this.state.salarySlipFiles.storagePath}/>
                             <Field
                                 name="statement4MonthFiles"
                                 component={renderMultiFileField}
                                 label="ถ่าย Statement ย้อนหลัง 4 เดือน ของบัญชีธนาคารที่เป็นบัญชีเงินเดือน"
                                 required={true}
-                                help="หรือ ถ่ายสมุดบัญชีพร้อมหน้าที่มีชื่อและเลขบัญชี ย้อนหลัง 4 เดือน ถ้าถ่ายสมุดบัญชี สมุดต้องอัพประจำ"
+                                accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"
+                                maxSize={3 * 1024 * 1024}
+                                help="หรือ ถ่ายสมุดบัญชีพร้อมหน้าที่มีชื่อและเลขบัญชี ย้อนหลัง 4 เดือน ถ้าถ่ายสมุดบัญชี สมุดต้องอัพประจำ  (รองรับนามสกุลไฟล์ .jpg, .png, .pdf, .doc, .docx ขนาดไม่เกิน 3 MB)"
+                                onError={this.onError}
                                 storagePath={this.state.statement4MonthFiles.storagePath}/>
                             <Field
                                 name="secondaryStatement4MonthFiles"
                                 component={renderMultiFileField}
                                 label="ถ้าบัญชีเงินเดือนไม่ใช่บัญชีที่ใช้เป็นหลัก ถ่าย Statement ย้อนหลัง 4 เดือน ของบัญชีธนาคารที่ใช้เป็นบัญชีใช้จ่ายหลัก"
                                 required={true}
-                                help="หรือ ถ่ายสมุดบัญชีพร้อมหน้าที่มีชื่อและเลขบัญชี ย้อนหลัง 4 เดือน ถ้าถ่ายสมุดบัญชี สมุดต้องอัพประจำ"
+                                accept=".jpg, .jpeg, .png, .pdf, .doc, .docx"
+                                maxSize={3 * 1024 * 1024}
+                                help="หรือ ถ่ายสมุดบัญชีพร้อมหน้าที่มีชื่อและเลขบัญชี ย้อนหลัง 4 เดือน ถ้าถ่ายสมุดบัญชี สมุดต้องอัพประจำ (รองรับนามสกุลไฟล์ .jpg, .png, .pdf, .doc, .docx ขนาดไม่เกิน 3 MB)"
+                                onError={this.onError}
                                 storagePath={this.state.secondaryStatement4MonthFiles.storagePath}/>
-                            <div className="text-center">
+                            <div className="text-center action">
                                 <button type="submit" className="btn btn-primary ml-2">อัพโหลดหลักฐาน</button>
                             </div>
                         </div>
