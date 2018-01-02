@@ -182,10 +182,10 @@ class Register extends Component {
         }
 
         const self = this;
-        this.openVerifyModal(false);
         this.showLoading();
         const code = this.state.verificationCode;
         this.state.confirmationResult.confirm(code).then(function (result) {
+            self.openVerifyModal(false);
             console.log('User signed in', result.user);
             self.state.fbUser = result.user;
             const uid = self.state.fbUser.uid;
