@@ -156,6 +156,9 @@ const validate = values => {
     // if (!values.loanNextMonthPossibility) {
     //     errors.loanNextMonthPossibility = 'กรุณากรอกข้อมูล'
     // }
+    if (!values.salarySlipFiles || values.salarySlipFiles.length < 2) {
+        errors.salarySlipFiles = 'กรุณาอัพโหลดไฟล์อย่างน้อย 2 ไฟล์'
+    }
     
     return errors
 };
