@@ -8,7 +8,7 @@ class renderMultiFileField extends Component {
         super(props);
         this.state = {
             files: [],
-            progress: 0
+            progress: []
         };
         this.uploadFile = this.uploadFile.bind(this);
     }
@@ -21,9 +21,15 @@ class renderMultiFileField extends Component {
             });
         });
         this.state.files.map((file, index) => {
+            if(!this.state.progress[index]) {
+                this.state.progress[index] = 0;
+            }
             this.uploadFile(file, index);
         });
-        this.setState({files: this.state.files});
+        this.setState({
+            files: this.state.files,
+            progress: this.state.progress
+        });
     }
     
     uploadFile(file, index) {
@@ -44,7 +50,12 @@ class renderMultiFileField extends Component {
                 // number of bytes to be uploaded
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 const roundingProgress = progress.toFixed(2);
-                this.setState({progress: roundingProgress})
+                
+                this.state.progress[index] = roundingProgress;
+                this.setState({
+                    progress: this.state.progress
+                });
+
                 switch (snapshot.state) {
                     case firebase.storage.TaskState.PAUSED: // or 'paused'
                         console.log('Upload is paused');
@@ -115,17 +126,19 @@ class renderMultiFileField extends Component {
                             <div className="col-md-12 col-xs-12">
                                 <ul>
                                 {
-                                    this.state.files.map(f => 
+                                    this.state.files.map((f,i) => 
                                         <div key={f.raw.name}>
                                             <li className="upload-list" >
-                                                {f.raw.name} - {f.raw.size} bytes
+                                               {i+1}. {f.raw.name}
                                             </li>
+                                            { this.state.progress[i] < 100 &&
                                             <div className="progress">
                                                 <div className="progress-bar" role="progressbar" aria-valuenow="70"
-                                                    aria-valuemin="0" aria-valuemax="100" style={{width: `${this.state.progress}%`}}>
-                                                        {this.state.progress}%
+                                                    aria-valuemin="0" aria-valuemax="100" style={{width: `${this.state.progress[i]}%`}}>
+                                                        {this.state.progress[i]}%
                                                 </div>
                                             </div>
+                                            }
                                         </div>)
                                 }
                                 </ul>    

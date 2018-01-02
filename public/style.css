@@ -427,6 +427,10 @@
     position: absolute;
 }
 
+.form-control.dropzone-container {
+    border: 1px dashed;
+}
+
 .form-control.dropzone-container p {
     margin: 0px;
     padding: 5px;
@@ -434,6 +438,7 @@
 
 .form-control.dropzone-container ul {
     padding: 0px;
+    list-style-type: circle;
 }
 
 .upload-list {
