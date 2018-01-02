@@ -12,6 +12,7 @@ class RegisterUploadFileForm extends Component {
   handleChange(event) {
         const file = event.target.files[0];
         this.setState({ file });
+        console.log('STATEEEs ' +this.state)
     }
 
     render() {
@@ -37,21 +38,29 @@ class RegisterUploadFileForm extends Component {
                                 type="file"
                                 label="ถ่ายสลิปเงินเดือน"
                                 required={true}
-                                help="ถ้าไม่มีเป็น หนังสือรับรองเงินเดือน แทน"/>
+                                help="ถ้าไม่มีเป็น หนังสือรับรองเงินเดือน แทน"
+                                onChange={this.handleChange}/>
                             <Field
                                 name="statement4MonthFiles"
                                 component={renderFileField}
                                 type="file"
                                 label="ถ่าย Statement ย้อนหลัง 4 เดือน ของบัญชีธนาคารที่เป็นบัญชีเงินเดือน"
                                 required={true}
-                                help="หรือ ถ่ายสมุดบัญชีพร้อมหน้าที่มีชื่อและเลขบัญชี ย้อนหลัง 4 เดือน ถ้าถ่ายสมุดบัญชี สมุดต้องอัพประจำ"/>
+                                help="หรือ ถ่ายสมุดบัญชีพร้อมหน้าที่มีชื่อและเลขบัญชี ย้อนหลัง 4 เดือน ถ้าถ่ายสมุดบัญชี สมุดต้องอัพประจำ"
+                                onChange={this.handleChange}/>
                             <Field
                                 name="secondaryStatement4MonthFiles"
                                 component={renderFileField}
                                 type="file"
                                 label="ถ้าบัญชีเงินเดือนไม่ใช่บัญชีที่ใช้เป็นหลัก ถ่าย Statement ย้อนหลัง 4 เดือน ของบัญชีธนาคารที่ใช้เป็นบัญชีใช้จ่ายหลัก"
                                 required={true}
-                                help="หรือ ถ่ายสมุดบัญชีพร้อมหน้าที่มีชื่อและเลขบัญชี ย้อนหลัง 4 เดือน ถ้าถ่ายสมุดบัญชี สมุดต้องอัพประจำ"/>
+                                help="หรือ ถ่ายสมุดบัญชีพร้อมหน้าที่มีชื่อและเลขบัญชี ย้อนหลัง 4 เดือน ถ้าถ่ายสมุดบัญชี สมุดต้องอัพประจำ"
+                                onChange={this.handleChange}/>
+                            <Field
+                                name="test"
+                                type="file"
+                                onChange={this.handleChange}
+                                component={renderFileField}/>
 
                             <div className="text-center">
                                 <button type="submit" className="btn btn-primary ml-2">อัพโหลดหลักฐาน</button>
