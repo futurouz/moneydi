@@ -28,6 +28,7 @@ class RegisterUploadFileForm extends Component {
             }
         };
 
+        this.preSubmit = this.preSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -55,6 +56,21 @@ class RegisterUploadFileForm extends Component {
                 values: []
             }
         });
+    }
+
+    preSubmit() {
+        console.log(this.state)
+
+        let includeField = ['selfieIdCardFiles','salarySlipFiles','statement4MonthFiles','secondaryStatement4MonthFiles'];
+         for (const key in this.state) {
+            if (this.state.hasOwnProperty(key) && includeField.indexOf(key) > -1) {
+                 // update form value
+                    this.props.change(key, this.state[key].values);
+                    console.log(key, this.state[key].values)
+                }
+        }
+        this.props.onSubmit();
+
     }
 
     render() {
@@ -92,7 +108,7 @@ class RegisterUploadFileForm extends Component {
                             storagePath={this.state.secondaryStatement4MonthFiles.storagePath}
                             values={this.state.secondaryStatement4MonthFiles.storagePath}/>
                         <div className="text-center">
-                            <button type="submit" className="btn btn-primary ml-2">อัพโหลดหลักฐาน</button>
+                            <button type="submit" className="btn btn-primary ml-2" onClick={this.preSubmit}>อัพโหลดหลักฐาน</button>
                         </div>
                     </div>
                 </div>

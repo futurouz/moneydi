@@ -19,11 +19,13 @@ class MutiFileField extends Component {
         this.setState({files: this.state.files});
 
         files.map((file,index) => {
-            this.uploadFile(file,index);
+            const allFileIndex = this.state.files.length - files.length + index;
+            this.uploadFile(file,index,allFileIndex);
         });
     }
     
-    uploadFile(file,index) {
+    uploadFile(file,index,allFileIndex) {
+        const that = this;
         const storageRef = firebase
             .storage()
             .ref()
@@ -64,7 +66,10 @@ class MutiFileField extends Component {
         }, function () {
             // Upload completed successfully, now we can get the download URL
             const downloadURL = storageRef.snapshot.downloadURL;
-            console.log(downloadURL)
+            that.props.values[allFileIndex] = {
+                fileName: file.name,
+                downloadURL
+            }
         });
     }
 

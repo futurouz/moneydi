@@ -80,7 +80,7 @@ class Register extends Component {
 
     saveUserData(isApplied = false) {
         const { user: userData } = this.props;
-
+        console.log(userData)
         // reject to save user data if already applied
         if(userData.isApplied === true) {
             return;
@@ -208,6 +208,7 @@ class Register extends Component {
     }
 
     uploadFile() {
+        this.saveUserData(true);
         alert('อัพโหลดหลักฐานเรียบร้อยแล้ว ขอบคุณที่ใช้บริการมันนี่ดิค่ะ');
         this.props.history.push('/');
     }
