@@ -453,3 +453,7 @@
     display: block;
     max-width: 100%;
 }
+
+#btn-apply {
+    margin-bottom: 20px;
+}
